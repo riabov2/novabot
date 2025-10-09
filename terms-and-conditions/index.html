@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NovaBot — Terms & Conditions</title>
+  <link rel="stylesheet" href="../assets/style.css?v=24" />
+</head>
+<body>
+
+  <nav class="nb-nav">
+    <div class="nb-brand">NovaBot</div>
+
+    <!-- Верхнее меню -->
+    <div class="nb-menu nb-top">
+      <a href="../index.html">Home</a>
+      <a href="../mu/index.html">MU</a>
+      <a href="../mu-bot-keys/index.html">Purchase</a>
+      <a href="../about/index.html">About</a>
+      <a href="../terms-and-conditions/index.html">Terms & Conditions</a>
+      <a href="../contact-us/index.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width:950px; margin:0 auto; padding:40px 20px; line-height:1.7;">
+    <h2 style="text-align:center;">Terms & Conditions</h2>
+
+    <div style="background:rgba(255,255,255,0.05); border-radius:14px; padding:30px; border:1px solid rgba(255,255,255,0.08); box-shadow:0 0 25px rgba(0,0,0,0.4); backdrop-filter:blur(8px);">
+      <p>
+        By using or purchasing any NovaBot product, you agree to comply with the following Terms of Service.  
+        Please review them carefully before installation or use.
+      </p>
+
+      <h3 style="color:#8bbcff; margin-top:25px;">1. Supported Systems</h3>
+      <p>
+        NovaBot is designed and tested for <strong>Windows 10 (22H2)</strong> and <strong>Windows 11 (24H2)</strong>.  
+        These versions offer the best performance and stability.  
+        If you experience technical issues, switching to one of these versions may be required.  
+        Some features may need Windows security settings to be disabled to function properly.
+      </p>
+
+      <h3 style="color:#8bbcff; margin-top:25px;">2. Third-Party Software</h3>
+      <p>
+        Certain bots and tools are distributed through partnerships with independent developers, mainly from China.  
+        While some interfaces may appear in Chinese, English setup guides are always provided.
+      </p>
+
+      <h3 style="color:#8bbcff; margin-top:25px;">3. Refunds</h3>
+      <p>
+        All sales are final. Refunds are <strong>not provided</strong> under any circumstances once a key or license is delivered.
+      </p>
+
+      <h3 style="color:#8bbcff; margin-top:25px;">4. Compensation</h3>
+      <p>
+        Compensation may be granted only for critical technical failures and remains at the sole discretion of our team.  
+        The following do not qualify for compensation:
+      </p>
+      <ul style="margin-left:20px;">
+        <li>OS or system incompatibility</li>
+        <li>Installation errors</li>
+        <li>Language or localization preferences</li>
+        <li>Account bans due to in-game automation</li>
+        <li>Internet or connection problems</li>
+      </ul>
+
+      <h3 style="color:#8bbcff; margin-top:25px;">5. User Responsibilities</h3>
+      <p>
+        Users must not share software, license keys, or private links with others.  
+        Violations will result in <strong>permanent license termination</strong> and community removal without refund.
+      </p>
+
+      <h3 style="color:#8bbcff; margin-top:25px;">6. License Usage</h3>
+      <p>
+        Each purchased key is bound to one user. Redistribution, resale, or public sharing is prohibited.  
+        Misuse of the software may lead to permanent account suspension.
+      </p>
+
+      <h3 style="color:#8bbcff; margin-top:25px;">7. Support and Updates</h3>
+      <p>
+        We continuously maintain NovaBot for compatibility and stability.  
+        Updates or fixes are provided as part of active license periods only.
+      </p>
+
+      <h3 style="color:#8bbcff; margin-top:25px;">8. Final Notice</h3>
+      <p>
+        NovaBot is intended strictly for private, educational, or testing purposes.  
+        By continuing to use our software, you accept full responsibility for your in-game accounts and actions.
+      </p>
+
+      <p style="margin-top:30px; color:#8bbcff; text-align:center;">
+        <strong>Thank you for being part of the NovaBot community.</strong>
+      </p>
+    </div>
+  </div>
+
+  <footer style="text-align:center; margin-top:50px;">
+    NovaBot © 2025 — All rights reserved
+  </footer>
+
+  <!-- ✅ Скрипт подсветки активной ссылки -->
+  <script>
+    function normalize(path) {
+      path = new URL(path, window.location).pathname.toLowerCase();
+      path = path.replace(/\/index\.html$/i, '').replace(/\/$/, '');
+      return path || '/';
+    }
+
+    const current = normalize(window.location.pathname);
+
+    document.querySelectorAll('.nb-menu a').forEach(a => {
+      const linkPath = normalize(a.getAttribute('href'));
+      if (linkPath === current) {
+        a.classList.add('active');
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NovaBot — Contact Us</title>
+  <link rel="stylesheet" href="../assets/style.css?v=24" />
+</head>
+<body>
+
+  <nav class="nb-nav">
+    <div class="nb-brand">NovaBot</div>
+
+    <!-- Верхнее меню -->
+    <div class="nb-menu nb-top">
+      <a href="../index.html">Home</a>
+      <a href="../mu/index.html">MU</a>
+      <a href="../mu-bot-keys/index.html">Purchase</a>
+      <a href="../about/index.html">About</a>
+      <a href="../terms-and-conditions/index.html">Terms & Conditions</a>
+      <a href="../contact-us/index.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width:950px; margin:0 auto; padding:40px 20px; line-height:1.8;">
+    <h2 style="text-align:center;">Contact <span style="color:#7aa9ff;">NovaBot</span></h2>
+    <p style="text-align:center; color:#d8e2ff; font-size:17px; margin:20px auto; max-width:700px;">
+      We're always here to help! Whether you need assistance setting up your bot,  
+      managing your license, or exploring advanced features — the NovaBot team is ready for you.  
+      Our goal is to make automation feel effortless and empowering. 🌌
+    </p>
+
+    <div style="background:rgba(255,255,255,0.05); border-radius:14px; padding:30px; border:1px solid rgba(255,255,255,0.08); box-shadow:0 0 25px rgba(0,0,0,0.4); backdrop-filter:blur(8px); margin-top:40px;">
+      <h3 style="color:#fff; text-shadow:0 0 8px rgba(100,150,255,0.3); text-align:center;">💬 Get in Touch</h3>
+      <p style="text-align:center; color:#cfd9ff;">
+        Our support team works around the clock to ensure every player receives the best possible experience.  
+        We handle <strong style="color:#7aa9ff;">Pre-Sale</strong>, <strong style="color:#7aa9ff;">After-Sale</strong>, and <strong style="color:#7aa9ff;">Technical Support</strong> with care and professionalism.
+      </p>
+
+      <!-- 🔗 Контактные ссылки -->
+      <div style="text-align:center; margin-top:25px;">
+        <a href="https://t.me/mukeyss" target="_blank" 
+           style="display:inline-block; margin:10px 15px; text-decoration:none; color:#7aa9ff; font-weight:600;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" 
+               alt="Telegram" width="30" height="30" 
+               style="filter: invert(70%) sepia(50%) saturate(300%) hue-rotate(180deg); vertical-align: middle; margin-right:8px;">
+          Telegram Support
+        </a>
+
+        <a href="https://wa.me/380951009326" target="_blank" 
+           style="display:inline-block; margin:10px 15px; text-decoration:none; color:#7aa9ff; font-weight:600;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" 
+               alt="WhatsApp" width="30" height="30" 
+               style="filter: invert(70%) sepia(60%) saturate(400%) hue-rotate(90deg); vertical-align: middle; margin-right:8px;">
+          WhatsApp Chat
+        </a>
+
+        <a href="https://facebook.com/novabotmu" target="_blank" 
+           style="display:inline-block; margin:10px 15px; text-decoration:none; color:#7aa9ff; font-weight:600;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" 
+               alt="Facebook" width="30" height="30" 
+               style="filter: invert(70%) sepia(60%) saturate(400%) hue-rotate(210deg); vertical-align: middle; margin-right:8px;">
+          Facebook Page
+        </a>
+      </div>
+
+      <p style="text-align:center; margin-top:15px; color:#cfd9ff;">
+        🕓 <strong>Operating Hours:</strong> 10:00 AM – 01:00 AM (UTC+2)
+      </p>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.05); border-radius:14px; padding:30px; border:1px solid rgba(255,255,255,0.08); box-shadow:0 0 25px rgba(0,0,0,0.4); backdrop-filter:blur(8px); margin-top:50px;">
+      <h3 style="color:#fff; text-shadow:0 0 8px rgba(100,150,255,0.3); text-align:center;">✨ About NovaBot</h3>
+      <p style="text-align:center; color:#cfd9ff;">
+        <strong>NovaBot</strong> is a cutting-edge automation solution crafted for precision and reliability.  
+        Designed with intelligence, efficiency, and security in mind, it helps players enhance their in-game performance  
+        without compromising fairness or stability.
+      </p>
+      <p style="text-align:center; color:#cfd9ff;">
+        We believe in empowering our community with tools that simplify complex routines,  
+        allowing you to focus on what truly matters — enjoying the game.
+      </p>
+    </div>
+  </div>
+
+  <footer style="text-align:center; margin-top:50px;">
+    NovaBot © 2025 — All rights reserved
+  </footer>
+
+  <script>
+    function normalize(path) {
+      path = new URL(path, window.location).pathname.toLowerCase();
+      path = path.replace(/\/index\.html$/i, '').replace(/\/$/, '');
+      return path || '/';
+    }
+
+    const current = normalize(window.location.pathname);
+    document.querySelectorAll('.nb-menu a').forEach(a => {
+      const linkPath = normalize(a.getAttribute('href'));
+      if (linkPath === current) {
+        a.classList.add('active');
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,413 @@
+/* === NOVABOT GLOBAL STYLE === */
+
+/* Основные цвета и фон */
+body {
+  background: radial-gradient(circle at top, #0b1633, #0a1025);
+  color: #cfd9ff;
+  font-family: 'Exo 2', sans-serif;
+  margin: 0;
+  text-align: center;
+}
+
+/* Логотип и шапка */
+.nb-nav {
+  background: linear-gradient(180deg, #0b1633 0%, #0e1b40 100%);
+  padding: 14px 0 12px;
+  border: none;
+  box-shadow: none;
+}
+
+/* ✨ Неоновый текстовый логотип NovaBot */
+.nb-brand {
+  text-align: center;
+  font-size: 56px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, #6fb8ff, #a37cff, #6fb8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 20px rgba(111,184,255,0.8),
+    0 0 40px rgba(111,100,255,0.6),
+    0 0 80px rgba(80,60,255,0.4);
+  transition: text-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.nb-brand:hover {
+  transform: scale(1.03);
+  text-shadow:
+    0 0 25px rgba(130,160,255,1),
+    0 0 60px rgba(120,100,255,0.8),
+    0 0 100px rgba(100,80,255,0.6);
+}
+
+/* Адаптация логотипа под мобильные устройства */
+@media (max-width: 600px) {
+  .nb-brand {
+    font-size: 36px;
+    letter-spacing: 1px;
+  }
+}
+
+/* Главное и дополнительное меню */
+.nb-menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin: 5px auto;
+  font-size: 15px;
+}
+
+.nb-menu a {
+  position: relative;
+  color: #cfd9ff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+  padding-bottom: 4px;
+}
+
+.nb-menu a:hover {
+  color: #ffffff;
+}
+
+.nb-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #4e8fff;
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.nb-menu a:hover::after {
+  width: 100%;
+}
+
+/* Верхнее и нижнее меню */
+.nb-top {
+  border-bottom: none;
+  padding-bottom: 8px;
+}
+
+.nb-bottom {
+  margin-top: 8px;
+  border-top: none;
+}
+
+/* === Фирменная кнопка NovaBot === */
+.btn-nova {
+  display: inline-block;
+  padding: 14px 48px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(135deg, #351d5e, #5c2d8a);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 12px rgba(130, 90, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-nova:hover {
+  background: linear-gradient(135deg, #5f2edb, #7f4eff);
+  box-shadow: 0 0 25px rgba(130, 90, 255, 0.6);
+  transform: translateY(-3px) scale(1.03);
+}
+
+/* === Контейнеры === */
+.container,
+.install-container,
+.setup-container,
+.bot-settings-container,
+.map-container,
+.elf-container,
+.activities-container,
+.others-container,
+.coordinates-container,
+.contact-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Подвал */
+footer {
+  text-align: center;
+  margin-top: 60px;
+  color: #b7c4f8;
+  font-size: 14px;
+}
+
+/* Заголовки */
+h2 {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(100,150,255,0.3);
+  margin: 40px 0 25px;
+  font-size: 28px;
+}
+
+/* === ACTIVE LINK HIGHLIGHT === */
+.nb-menu a.active {
+  color: #ffffff;
+  font-weight: 700;
+  position: relative;
+  text-shadow: 0 0 8px rgba(120,150,255,0.8);
+}
+
+.nb-menu a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: #5a8fff;
+  box-shadow: 0 0 8px rgba(100,150,255,0.6);
+  border-radius: 2px;
+}
+
+/* === Унификация подменю === */
+.nb-menu.subnav {
+  margin-bottom: 35px !important;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 28px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  max-width: 100vw;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nb-menu.subnav::-webkit-scrollbar {
+  display: none;
+}
+
+.nb-menu.subnav a {
+  color: #cfd9ff;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding: 5px 10px 4px;
+  transition: color 0.25s ease;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.nb-menu.subnav a:hover {
+  color: #fff;
+}
+
+.nb-menu.subnav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #4e8fff;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.nb-menu.subnav a:hover::after {
+  width: 100%;
+}
+
+.nb-menu.subnav a.active {
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(120,150,255,0.8);
+}
+
+.nb-menu.subnav a.active::after {
+  width: 100%;
+  background-color: #5a8fff;
+  box-shadow: 0 0 8px rgba(100,150,255,0.6);
+}
+
+/* === Карточки контента === */
+.setup-box,
+.card,
+.terms-box,
+.content-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 30px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+  max-width: 950px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.setup-box:hover,
+.card:hover,
+.terms-box:hover,
+.content-box:hover {
+  box-shadow: 0 0 45px rgba(120, 100, 255, 0.6),
+              0 0 80px rgba(90, 150, 255, 0.3);
+  border-color: rgba(120, 150, 255, 0.3);
+}
+
+/* Текст */
+.setup-box p,
+.card p,
+.terms-box p,
+.content-box p {
+  line-height: 1.7;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+/* === Изображения === */
+.setup-img,
+.bot-settings-img,
+.activities-img,
+.map-img,
+.elf-img,
+.mu-banner,
+.setup-box img,
+.card img,
+.terms-box img,
+.content-box img {
+  width: 100%;
+  max-width: 900px;
+  display: block;
+  margin: 30px auto;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(255,255,255,0.08);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.setup-img:hover,
+.bot-settings-img:hover,
+.activities-img:hover,
+.map-img:hover,
+.elf-img:hover,
+.mu-banner:hover,
+.setup-box img:hover,
+.card img:hover,
+.terms-box img:hover,
+.content-box img:hover {
+  box-shadow: 0 0 40px rgba(120, 100, 255, 0.6),
+              0 0 70px rgba(90, 150, 255, 0.3);
+  border-color: rgba(120, 150, 255, 0.3);
+}
+
+/* Подзаголовки и секции */
+.setup-box h3,
+.card h3,
+.terms-box h3,
+.content-box h3 {
+  color: #6fb8ff;
+  font-size: 1.2rem;
+  margin-top: 35px;
+  text-shadow: 0 0 8px rgba(110,170,255,0.5);
+}
+
+.section-title {
+  color: #ff8585;
+  font-weight: 600;
+  margin-top: 45px;
+  text-shadow: 0 0 12px rgba(255, 90, 90, 0.4);
+}
+
+/* Предупреждения */
+.warning {
+  color: #ff4f4f;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+}
+
+/* === Адаптация для мобильных === */
+@media (max-width: 900px) {
+  .nb-menu.subnav {
+    gap: 18px;
+    font-size: 14px;
+    padding: 0 6px;
+  }
+}
+
+/* === Fix for hidden left edge in subnav === */
+.nb-menu.subnav {
+  overflow-x: visible !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.bot-settings-container,
+.setup-container,
+.install-container,
+.map-container,
+.elf-container,
+.activities-container,
+.others-container,
+.coordinates-container,
+.contact-container {
+  overflow: visible !important;
+}
+
+/* === FIX: Subnav Alignment & Hidden Edge Issue === */
+.nb-menu.subnav {
+  overflow-x: visible !important;
+  margin: 0 auto !important;
+  padding: 0 10px !important;
+  justify-content: center !important;
+  gap: 22px !important;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.nb-menu.subnav a {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* === Контейнеры без скрытых краёв === */
+.bot-settings-container,
+.setup-container,
+.install-container,
+.map-container,
+.elf-container,
+.activities-container,
+.others-container,
+.coordinates-container,
+.contact-container {
+  overflow: visible !important;
+}
+
+/* === Адаптация для средних и малых экранов === */
+@media (max-width: 1100px) {
+  .nb-menu.subnav {
+    gap: 18px !important;
+    padding: 0 8px !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .nb-menu.subnav {
+    flex-wrap: wrap !important;
+    justify-content: center;
+  }
+}

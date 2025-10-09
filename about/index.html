@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NovaBot — About</title>
+  <link rel="stylesheet" href="../assets/style.css?v=24" />
+
+  <style>
+    /* === ABOUT PAGE HIGHLIGHT EFFECTS === */
+    .about-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 60px;
+      text-align: left;
+    }
+
+    .about-section img {
+      max-width: 300px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(120, 140, 255, 0.15);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .about-section img:hover {
+      transform: scale(1.05) translateY(-6px);
+      box-shadow: 0 0 45px rgba(120, 150, 255, 0.6),
+                  0 0 70px rgba(90, 150, 255, 0.3);
+      border-color: rgba(120, 150, 255, 0.3);
+    }
+
+    .about-section h3 {
+      color: #7da4ff;
+      text-shadow: 0 0 10px rgba(120, 160, 255, 0.4);
+    }
+
+    .about-section p {
+      color: #cfd9ff;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    /* === Адаптация для телефонов === */
+    @media (max-width: 768px) {
+      .about-section {
+        flex-direction: column;
+        gap: 25px;
+        text-align: center;
+      }
+      .about-section img {
+        max-width: 85%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nb-nav">
+    <div class="nb-brand">NovaBot</div>
+    <div class="nb-menu nb-top">
+      <a href="../index.html">Home</a>
+      <a href="../mu/index.html">MU</a>
+      <a href="../mu-bot-keys/index.html">Purchase</a>
+      <a href="../about/index.html">About</a>
+      <a href="../terms-and-conditions/index.html">Terms & Conditions</a>
+      <a href="../contact-us/index.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width:1000px; margin:40px auto; text-align:center;">
+    <h2>About Us</h2>
+
+    <!-- 1 -->
+    <div class="about-section">
+      <img src="../wp-content/uploads/2025/07/about1.png" alt="Our Company">
+      <div style="flex:1; min-width:260px;">
+        <h3>Our Company</h3>
+        <p><strong>NovaBot</strong> is the official and original source of authentic NovaBot tools. We are proud to be the trusted and exclusive provider of genuine automation software for the MU community.</p>
+        <p>Since our creation, our mission has been simple — to deliver safe, efficient, and powerful automation tools. When you choose NovaBot, you’re choosing quality, stability, and 24/7 support.</p>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="about-section" style="flex-direction:row-reverse;">
+      <img src="../wp-content/uploads/2025/07/about2-2.png" alt="Our Products">
+      <div style="flex:1; min-width:260px;">
+        <h3>Our Products</h3>
+        <p>We offer premium bots for MU Online — optimized for performance, stability, and ease of use. Every activation key is verified and managed through our secure system.</p>
+        <p>Be careful of unofficial versions or cracked bots that can harm your device or compromise your data. Only <strong>NovaBot</strong> provides safe and legitimate NovaBot products.</p>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="about-section">
+      <img src="../wp-content/uploads/2025/07/about3-1.png" alt="Our Services">
+      <div style="flex:1; min-width:260px;">
+        <h3>Our Services</h3>
+        <p>We provide instant license activation, technical assistance, and lifetime updates for all NovaBot users. Our goal is to make automation seamless and accessible for everyone.</p>
+        <p>With thousands of satisfied users worldwide, NovaBot stands for reliability, innovation, and excellence in MU automation.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer style="text-align:center; margin-top:50px;">
+    NovaBot © 2025 — All rights reserved
+  </footer>
+
+  <script>
+    function normalize(path) {
+      path = new URL(path, window.location).pathname.toLowerCase();
+      path = path.replace(/\/index\.html$/i, '').replace(/\/$/, '');
+      return path || '/';
+    }
+
+    const current = normalize(window.location.pathname);
+    document.querySelectorAll('.nb-menu a').forEach(a => {
+      const linkPath = normalize(a.getAttribute('href'));
+      if (linkPath === current) a.classList.add('active');
+    });
+  </script>
+</body>
+</html>

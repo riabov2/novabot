@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NovaBot — MU Keys</title>
+  <link rel="stylesheet" href="../assets/style.css?v=24" />
+  <style>
+    /* === KEY SECTION STYLES === */
+    .key-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 40px 25px;
+      margin: 40px auto;
+      max-width: 1050px;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      box-sizing: border-box;
+      text-align: center;
+      transition: box-shadow 0.4s ease;
+    }
+
+    .key-section:hover {
+      box-shadow: 0 0 30px rgba(120, 150, 255, 0.35),
+                  0 0 60px rgba(90, 150, 255, 0.25);
+    }
+
+    .key-section img {
+      max-width: 320px;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(111,184,255,0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .key-section img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 35px rgba(111,184,255,0.45);
+    }
+
+    .key-info {
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .key-info h3 {
+      color: #ffd86b;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+      text-shadow: 0 0 6px rgba(255, 210, 100, 0.3);
+    }
+
+    .key-info p {
+      color: #b3c1ff;
+      margin: 8px 0 15px;
+      line-height: 1.6;
+    }
+
+    .key-info img {
+      width: 180px;
+      margin: 12px auto;
+      display: block;
+      border-radius: 6px;
+      box-shadow: 0 0 12px rgba(111,184,255,0.25);
+    }
+
+    .wp-block-button__link {
+      display: inline-block;
+      background: linear-gradient(135deg, #351d5e, #5c2d8a);
+      color: #fff;
+      padding: 12px 35px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 0 10px rgba(130,90,255,0.3);
+      transition: all 0.3s ease;
+      text-align: center;
+      margin: 10px auto 0 auto;
+    }
+
+    .wp-block-button__link:hover {
+      background: linear-gradient(135deg, #5f2edb, #7f4eff);
+      box-shadow: 0 0 20px rgba(130,90,255,0.5);
+      transform: translateY(-3px);
+    }
+
+    /* === NOTICE BOX (с подсветкой) === */
+    .notice-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 22px;
+      max-width: 900px;
+      margin: 20px auto 40px;
+      color: #d8e2ff;
+      font-size: 16px;
+      line-height: 1.7;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(90,150,255,0.25), 0 0 50px rgba(90,150,255,0.15);
+      animation: glowPulse 3s infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        box-shadow: 0 0 18px rgba(90,150,255,0.25), 0 0 35px rgba(90,150,255,0.15);
+      }
+      100% {
+        box-shadow: 0 0 30px rgba(120,170,255,0.45), 0 0 60px rgba(100,180,255,0.25);
+      }
+    }
+
+    .notice-box strong {
+      color: #ffd86b;
+      text-shadow: 0 0 6px rgba(255,210,100,0.4);
+    }
+
+    .notice-box a {
+      color: #7aa9ff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .notice-box a:hover {
+      text-decoration: underline;
+    }
+
+    /* === RESPONSIVE FIXES === */
+    @media (max-width: 900px) {
+      .key-section {
+        flex-direction: column;
+        gap: 25px;
+        padding: 25px 18px;
+      }
+      .key-section img {
+        max-width: 85%;
+      }
+      .key-info {
+        width: 100%;
+        max-width: 100%;
+      }
+      .key-info h3 {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .key-section {
+        padding: 20px 12px;
+        margin: 25px auto;
+      }
+      .key-info p {
+        font-size: 15px;
+      }
+      .wp-block-button__link {
+        width: 90%;
+        max-width: 230px;
+        font-size: 0.95rem;
+        margin: 12px auto 0 auto;
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="nb-nav">
+    <div class="nb-brand">NovaBot</div>
+    <div class="nb-menu nb-top">
+      <a href="../index.html">Home</a>
+      <a href="../mu/index.html">MU</a>
+      <a href="../mu-bot-keys/index.html">Purchase</a>
+      <a href="../about/index.html">About</a>
+      <a href="../terms-and-conditions/index.html">Terms & Conditions</a>
+      <a href="../contact-us/index.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>MU Bot Keys</h2>
+
+    <div class="notice-box">
+      ⚠️ <strong>Important:</strong> Before making a payment, please contact us via  
+      <a href="https://t.me/mukeyss" target="_blank">Telegram</a>,  
+      <a href="https://wa.me/380951009326" target="_blank">WhatsApp</a>,  
+      or <a href="https://facebook.com/novabotmu" target="_blank">Facebook</a>  
+      to confirm your purchase and receive your activation details.  
+    </div>
+
+    <p style="color:#b3c1ff; font-style:italic; margin-top:-10px;">
+      Note: Keys are not refundable after purchase. It’s recommended to test the free trial first.
+    </p>
+    <p><a href="../terms-and-conditions/index.html" style="color:#6fb8ff;">View Terms and Conditions</a></p>
+
+    <!-- === 1 Month Key === -->
+    <div class="key-section">
+      <img src="../wp-content/uploads/2025/05/1 month.png" alt="1 Month Key">
+      <div class="key-info">
+        <h3>1 Month — $5.00 USD / Key</h3>
+        <p>PayPal / Debit / Credit Card</p>
+        <img src="../wp-content/uploads/2025/05/paypal.jpg" alt="PayPal">
+        <a href="https://www.paypal.com/paypalme/YanRiabov/5USD" class="wp-block-button__link">Select</a>
+      </div>
+    </div>
+
+    <!-- === 3 Month Key === -->
+    <div class="key-section">
+      <img src="../wp-content/uploads/2025/05/3 month.jpg" alt="3 Month Key">
+      <div class="key-info">
+        <h3>3 Month — $13.00 USD / Key</h3>
+        <p>PayPal / Debit / Credit Card</p>
+        <img src="../wp-content/uploads/2025/05/paypal.jpg" alt="PayPal">
+        <a href="https://www.paypal.com/paypalme/YanRiabov/13USD" class="wp-block-button__link">Select</a>
+      </div>
+    </div>
+  </div>
+
+  <footer style="text-align:center; margin-top:50px;">
+    NovaBot © 2025 — All rights reserved
+  </footer>
+
+  <script>
+    function normalize(path) {
+      path = new URL(path, window.location).pathname.toLowerCase();
+      path = path.replace(/\/index\.html$/i, '').replace(/\/$/, '');
+      return path || '/';
+    }
+
+    const current = normalize(window.location.pathname);
+    document.querySelectorAll('.nb-menu a').forEach(a => {
+      const linkPath = normalize(a.getAttribute('href'));
+      if (linkPath === current) a.classList.add('active');
+    });
+  </script>
+
+</body>
+</html>

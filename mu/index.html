@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NovaBot — MU</title>
+  <link rel="stylesheet" href="../assets/style.css?v=24" />
+</head>
+<body>
+
+  <nav class="nb-nav">
+    <div class="nb-brand">NovaBot</div>
+
+    <!-- Верхнее меню -->
+    <div class="nb-menu nb-top">
+      <a href="../index.html">Home</a>
+      <a href="../mu/index.html">MU</a>
+      <a href="../mu-bot-keys/index.html">Purchase</a>
+      <a href="../about/index.html">About</a>
+      <a href="../terms-and-conditions/index.html">Terms & Conditions</a>
+      <a href="../contact-us/index.html">Contact</a>
+    </div>
+
+    <!-- Нижнее меню -->
+    <div class="nb-menu nb-bottom">
+      <a href="../installation-download/index.html">Install</a>
+      <a href="../default-bot-setup/index.html">Quick Setup</a>
+      <a href="../bot-settings-13/index.html">Bot Settings</a>
+      <a href="../map-settings/index.html">Map Settings</a>
+      <a href="../elf-minion-settings/index.html">Elf/Minion</a>
+      <a href="../activities-settings/index.html">Activities</a>
+      <a href="../others-settings/index.html">Others</a>
+      <a href="../get-coordinates/index.html">Coordinates</a>
+      <a href="../grab-store/index.html">Grab Store</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2 style="text-align:center;">MU Bot Information</h2>
+    <figure style="text-align:center;">
+      <img src="../wp-content/uploads/2025/08/mu-banner.png" alt="MU Bot" style="max-width:700px; width:100%; height:auto; border-radius:10px;">
+    </figure>
+
+    <p style="text-align:center; max-width:700px; margin:20px auto; line-height:1.6;">
+      Welcome to the <strong>MU NovaBot</strong> — here you can find setup instructions, configuration options, 
+      and all the tools you need for NovaBot automation in MU Online.  
+      Designed for <strong>MU Monarch</strong>, <strong>MU Ascension</strong>, and <strong>MU Immortal</strong> — tested and verified on the latest builds.
+    </p>
+
+    <!-- ======================== MAIN FEATURES ======================== -->
+    <section id="main-features" style="text-align:center; margin:80px auto; max-width:1200px;">
+      <h2 style="color:#ffd86b; font-size:2em; margin-bottom:20px;">Main Features</h2>
+      <p style="color:#b3c1ff; font-style:italic; margin-bottom:30px;">
+        Discover the key features that make NovaBot powerful and easy to use.
+      </p>
+      <img 
+  src="../wp-content/uploads/2025/02/upscalemedia-transformed-4-1.png" 
+  alt="NovaBot Main Features"
+  style="max-width:800px; width:100%; border-radius:10px; box-shadow:0 0 20px rgba(111,184,255,0.4);"
+/>
+  <footer style="text-align:center; margin-top:50px;">
+    NovaBot © 2025 — All rights reserved
+  </footer>
+
+  <!-- ✅ Скрипт для автоматической подсветки активной ссылки -->
+  <script>
+    function normalize(path) {
+      path = new URL(path, window.location).pathname.toLowerCase();
+      path = path.replace(/\/index\.html$/i, '').replace(/\/$/, '');
+      return path || '/';
+    }
+
+    const current = normalize(window.location.pathname);
+
+    document.querySelectorAll('.nb-menu a').forEach(a => {
+      const linkPath = normalize(a.getAttribute('href'));
+      if (linkPath === current) {
+        a.classList.add('active');
+      }
+    });
+  </script>
+
+</body>
+</html>

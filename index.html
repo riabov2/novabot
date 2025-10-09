@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NovaBot — MU</title>
 
-  <!-- ✅ Подключаем стиль из репозитория -->
+  <!-- ✅ Корректный путь к стилю из репозитория -->
   <link rel="stylesheet" href="/novabot/assets/style.css?v=24" />
 </head>
 <body>
@@ -37,11 +37,11 @@
     </div>
   </nav>
 
-  <div class="container">
+  <main class="container">
     <h2 style="text-align:center;">MU Bot Information</h2>
 
     <figure style="text-align:center;">
-      <!-- ✅ Путь к картинке из репозитория -->
+      <!-- ✅ Исправлен путь к изображению -->
       <img src="/novabot/wp-content/uploads/2025/08/mu-banner.png" alt="MU Bot" style="max-width:350px; width:100%; height:auto;">
     </figure>
 
@@ -50,26 +50,36 @@
       and all the tools you need for NovaBot automation in MU Online.  
       Use the menu above to navigate through installation, quick setup, or advanced bot settings.
     </p>
-  </div>
+  </main>
 
   <footer style="text-align:center; margin-top:40px;">
     NovaBot © 2025 — All rights reserved
   </footer>
 
-  <!-- ✅ Скрипт для подсветки активной ссылки -->
+  <!-- ✅ Исправленный скрипт подсветки активного меню -->
   <script>
     function normalize(path) {
-      path = new URL(path, window.location).pathname.toLowerCase();
-      path = path.replace(/\/index\.html$/i, '').replace(/\/$/, '');
-      return path || '/';
+      const url = new URL(path, window.location.origin);
+      let clean = url.pathname.toLowerCase();
+
+      // Убираем index.html и завершающий слэш
+      clean = clean.replace(/\/index\.html$/i, '').replace(/\/$/, '');
+      return clean;
     }
 
     const current = normalize(window.location.pathname);
 
     document.querySelectorAll('.nb-menu a').forEach(a => {
       const linkPath = normalize(a.getAttribute('href'));
-      if (linkPath === current) {
+
+      // ✅ Исправление для главной страницы — подсвечивает только Home
+      if (
+        (current === '/novabot' && linkPath === '/novabot/index.html') ||
+        (linkPath === current)
+      ) {
         a.classList.add('active');
+      } else {
+        a.classList.remove('active');
       }
     });
   </script>

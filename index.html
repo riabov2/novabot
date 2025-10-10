@@ -76,25 +76,35 @@
       Farm gold, bosses and manage buffs automatically.
     </p>
 
-   <!-- ✅ Видео Facebook (воспроизводится по клику) -->
+ <!-- ✅ Видео Facebook (автоматическое превью + запуск по клику) -->
 <div style="text-align:center; margin-top:30px;">
-  <div id="fb-video-placeholder" style="position:relative; display:inline-block; cursor:pointer;">
-    <!-- Превью-картинка -->
-    <img src="https://riabov2.github.io/novabot/assets/preview.jpg" 
+  <div id="fb-video-placeholder"
+       style="position:relative; display:inline-block; cursor:pointer; border-radius:12px; overflow:hidden;">
+    <!-- 🔄 Автоматическое превью -->
+    <img src="https://graph.facebook.com/2008288539931327/picture?type=large"
          alt="Watch video"
-         style="max-width:500px; width:100%; border-radius:12px;">
-    <!-- Кнопка Play -->
-    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-                background:rgba(0,0,0,0.6); border-radius:50%; padding:18px;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="50" height="50" fill="white">
-        <polygon points="25,18 50,32 25,46"/>
-      </svg>
+         style="width:100%; max-width:500px; height:auto; display:block; border-radius:12px;">
+
+    <!-- ▶️ Кнопка Play -->
+    <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
+      <div style="width:80px; height:80px; background:rgba(0,0,0,0.6); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:0.2s;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="45" height="45" fill="white">
+          <polygon points="25,18 50,32 25,46"/>
+        </svg>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-  document.getElementById('fb-video-placeholder').addEventListener('click', function() {
+  const placeholder = document.getElementById('fb-video-placeholder');
+  placeholder.addEventListener('mouseover', () => {
+    placeholder.querySelector('div > div').style.background = 'rgba(0,0,0,0.8)';
+  });
+  placeholder.addEventListener('mouseout', () => {
+    placeholder.querySelector('div > div').style.background = 'rgba(0,0,0,0.6)';
+  });
+  placeholder.addEventListener('click', function() {
     this.outerHTML = `
       <div style="text-align:center;">
         <iframe 
@@ -110,8 +120,7 @@
       </div>`;
   });
 </script>
-<!-- ✅ Конец блока видео -->
-
+<!-- ✅ Конец блока -->
   </main>
 
   <footer style="text-align:center; margin-top:40px;">

@@ -3,7 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NovaBot — MU</title>
+  <title>MU Monarch Bot | MU Ascension Bot | MU Immortal Bot | MU Online Autofarm</title>
+
+  <!-- ✅ SEO -->
+  <meta name="description" content="MU Monarch Bot, MU Ascension Bot and MU Immortal Bot — MU Online autofarm and helper. Farm bosses, gold, potions and loot automatically across MU servers.">
+  <meta name="keywords" content="MU Monarch bot, MU Ascension bot, MU Immortal bot, MU Online bot, MU autofarm, MU helper, MU bot key, MU macro, MU auto hunt, MU auto potion">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+
+  <!-- ✅ Open Graph для соцсетей и превью -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MU Monarch, MU Ascension & MU Immortal Bot — MU Online Autofarm Tool">
+  <meta property="og:description" content="Powerful MU Online autofarm for Monarch, Ascension and Immortal servers. Automate farming, buffs, potions and loot safely.">
+  <meta property="og:image" content="https://riabov2.github.io/novabot/assets/preview.jpg">
+  <meta property="og:url" content="https://riabov2.github.io/novabot/">
+  <meta property="og:locale" content="en_US">
 
   <!-- ✅ Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6YQ0S1P6NE"></script>
@@ -14,7 +27,7 @@
     gtag('config', 'G-6YQ0S1P6NE');
   </script>
 
-  <!-- ✅ Корректный путь к стилю из репозитория -->
+  <!-- ✅ Подключение стиля -->
   <link rel="stylesheet" href="/novabot/assets/style.css?v=24" />
 </head>
 <body>
@@ -50,14 +63,12 @@
     <h2 style="text-align:center;">MU Bot Information</h2>
 
     <figure style="text-align:center;">
-      <!-- ✅ Исправлен путь к изображению -->
       <img src="/novabot/wp-content/uploads/2025/08/mu-banner.png" alt="MU Bot" style="max-width:350px; width:100%; height:auto;">
     </figure>
 
     <p style="text-align:center; max-width:600px; margin:20px auto; line-height:1.6;">
-      Welcome to the <strong>MU NovaBot</strong> — here you can find setup instructions, configuration options, 
-      and all the tools you need for NovaBot automation in MU Online.  
-      Use the menu above to navigate through installation, quick setup, or advanced bot settings.
+      Welcome to <strong>MU NovaBot</strong> — automation and autofarm tool for <strong>MU Monarch</strong>, <strong>MU Ascension</strong> and <strong>MU Immortal</strong> servers. 
+      Farm gold, bosses and manage buffs automatically.
     </p>
   </main>
 
@@ -65,13 +76,11 @@
     NovaBot © 2025 — All rights reserved
   </footer>
 
-  <!-- ✅ Исправленный скрипт подсветки активного меню -->
+  <!-- ✅ Подсветка активного меню -->
   <script>
     function normalize(path) {
       const url = new URL(path, window.location.origin);
       let clean = url.pathname.toLowerCase();
-
-      // Убираем index.html и завершающий слэш
       clean = clean.replace(/\/index\.html$/i, '').replace(/\/$/, '');
       return clean;
     }
@@ -80,8 +89,6 @@
 
     document.querySelectorAll('.nb-menu a').forEach(a => {
       const linkPath = normalize(a.getAttribute('href'));
-
-      // ✅ Исправление для главной страницы — подсвечивает только Home
       if (
         (current === '/novabot' && linkPath === '/novabot/index.html') ||
         (linkPath === current)

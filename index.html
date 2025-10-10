@@ -10,7 +10,7 @@
   <meta name="keywords" content="MU Monarch bot, MU Ascension bot, MU Immortal bot, MU Online bot, MU autofarm, MU helper, MU bot key, MU macro, MU auto hunt, MU auto potion">
   <meta name="robots" content="index, follow, max-image-preview:large">
 
-  <!-- ✅ Open Graph для соцсетей и превью -->
+  <!-- ✅ Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="MU Monarch, MU Ascension & MU Immortal Bot — MU Online Autofarm Tool">
   <meta property="og:description" content="Powerful MU Online autofarm for Monarch, Ascension and Immortal servers. Automate farming, buffs, potions and loot safely.">
@@ -27,7 +27,7 @@
     gtag('config', 'G-6YQ0S1P6NE');
   </script>
 
-  <!-- ✅ Подключение стиля -->
+  <!-- ✅ Стили -->
   <link rel="stylesheet" href="/novabot/assets/style.css?v=24" />
 </head>
 <body>
@@ -35,7 +35,6 @@
   <nav class="nb-nav">
     <div class="nb-brand">NovaBot</div>
 
-    <!-- Верхнее меню -->
     <div class="nb-menu nb-top">
       <a href="/novabot/index.html">Home</a>
       <a href="/novabot/mu/index.html" class="active">MU</a>
@@ -45,7 +44,6 @@
       <a href="/novabot/contact-us/index.html">Contact</a>
     </div>
 
-    <!-- Нижнее меню -->
     <div class="nb-menu nb-bottom">
       <a href="/novabot/installation-download/index.html">Install</a>
       <a href="/novabot/default-bot-setup/index.html">Quick Setup</a>
@@ -60,6 +58,13 @@
   </nav>
 
   <main class="container">
+
+    <!-- ✅ Новое описание сверху -->
+    <p style="text-align:center; max-width:700px; margin:30px auto 10px; font-size:1.05em; line-height:1.6;">
+      Explore the world of <strong>MU Online</strong> with advanced tools built for <strong>Monarch</strong>, <strong>Ascension</strong>, and <strong>Immortal</strong> servers. 
+      Boost your gameplay, save time, and enjoy automated farming, leveling, and looting with <strong>NovaBot</strong>.
+    </p>
+
     <h2 style="text-align:center;">MU Bot Information</h2>
 
     <figure style="text-align:center;">
@@ -70,6 +75,43 @@
       Welcome to <strong>MU NovaBot</strong> — automation and autofarm tool for <strong>MU Monarch</strong>, <strong>MU Ascension</strong> and <strong>MU Immortal</strong> servers. 
       Farm gold, bosses and manage buffs automatically.
     </p>
+
+    <!-- ✅ Видео Facebook (воспроизводится по клику) -->
+    <div style="text-align:center; margin-top:30px;">
+      <div id="fb-video-placeholder" style="position:relative; display:inline-block; cursor:pointer;">
+        <!-- Превью-картинка -->
+        <img src="https://riabov2.github.io/novabot/assets/preview.jpg" 
+             alt="Watch video"
+             style="max-width:500px; width:100%; border-radius:12px;">
+        <!-- Кнопка Play -->
+        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+                    background:rgba(0,0,0,0.6); border-radius:50%; padding:18px;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="50" height="50" fill="white">
+            <polygon points="25,18 50,32 25,46"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('fb-video-placeholder').addEventListener('click', function() {
+        this.outerHTML = `
+          <div style="text-align:center;">
+            <iframe 
+              src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/share/v/1CmkXpkE4t/&autoplay=true"
+              width="500"
+              height="280"
+              style="border:none;overflow:hidden;border-radius:12px;"
+              scrolling="no"
+              frameborder="0"
+              allowfullscreen="true"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+            </iframe>
+          </div>`;
+      });
+    </script>
+    <!-- ✅ Конец блока видео -->
+
   </main>
 
   <footer style="text-align:center; margin-top:40px;">

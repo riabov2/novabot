@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://riabov2.github.io/novabot/sitemap.xml
+Sitemap: https://riabov2.github.io/novabot/sitemap-index.xml

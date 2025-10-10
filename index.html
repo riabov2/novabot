@@ -76,41 +76,41 @@
       Farm gold, bosses and manage buffs automatically.
     </p>
 
-    <!-- ✅ Видео Facebook (воспроизводится по клику) -->
-    <div style="text-align:center; margin-top:30px;">
-      <div id="fb-video-placeholder" style="position:relative; display:inline-block; cursor:pointer;">
-        <!-- Превью-картинка -->
-        <img src="https://riabov2.github.io/novabot/assets/preview.jpg" 
-             alt="Watch video"
-             style="max-width:500px; width:100%; border-radius:12px;">
-        <!-- Кнопка Play -->
-        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-                    background:rgba(0,0,0,0.6); border-radius:50%; padding:18px;">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="50" height="50" fill="white">
-            <polygon points="25,18 50,32 25,46"/>
-          </svg>
-        </div>
-      </div>
+   <!-- ✅ Видео Facebook (воспроизводится по клику) -->
+<div style="text-align:center; margin-top:30px;">
+  <div id="fb-video-placeholder" style="position:relative; display:inline-block; cursor:pointer;">
+    <!-- Превью-картинка -->
+    <img src="https://riabov2.github.io/novabot/assets/preview.jpg" 
+         alt="Watch video"
+         style="max-width:500px; width:100%; border-radius:12px;">
+    <!-- Кнопка Play -->
+    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+                background:rgba(0,0,0,0.6); border-radius:50%; padding:18px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="50" height="50" fill="white">
+        <polygon points="25,18 50,32 25,46"/>
+      </svg>
     </div>
+  </div>
+</div>
 
-    <script>
-      document.getElementById('fb-video-placeholder').addEventListener('click', function() {
-        this.outerHTML = `
-          <div style="text-align:center;">
-            <iframe 
-              src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/share/v/1CmkXpkE4t/&autoplay=true"
-              width="500"
-              height="280"
-              style="border:none;overflow:hidden;border-radius:12px;"
-              scrolling="no"
-              frameborder="0"
-              allowfullscreen="true"
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-            </iframe>
-          </div>`;
-      });
-    </script>
-    <!-- ✅ Конец блока видео -->
+<script>
+  document.getElementById('fb-video-placeholder').addEventListener('click', function() {
+    this.outerHTML = `
+      <div style="text-align:center;">
+        <iframe 
+          src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/watch/?v=2008288539931327&autoplay=true&show_text=false&width=500"
+          width="500"
+          height="280"
+          style="border:none;overflow:hidden;border-radius:12px;"
+          scrolling="no"
+          frameborder="0"
+          allowfullscreen="true"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+        </iframe>
+      </div>`;
+  });
+</script>
+<!-- ✅ Конец блока видео -->
 
   </main>
 

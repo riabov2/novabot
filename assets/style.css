@@ -127,6 +127,10 @@ figure {
   scroll-snap-type: none;
 }
 
+.nb-bottom:not(.is-open) {
+  gap: 0;
+}
+
 .nb-bottom a {
   flex: 0 0 auto;
   scroll-snap-align: center;
@@ -510,6 +514,14 @@ footer {
     display: none;
   }
 
+  .nb-top {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-inline: 12px;
+    overflow: hidden;
+  }
+
   .nb-menu + .nb-menu {
     padding-top: 11px;
   }
@@ -518,6 +530,27 @@ footer {
     width: 100%;
     margin-inline: 0;
     padding: 11px 16px 7px;
+  }
+
+  .nb-bottom:not(.is-open) {
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .nb-bottom.is-open {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    overflow: hidden;
+  }
+
+  .nb-bottom.is-open .game-trigger {
+    flex-basis: 100%;
+    justify-content: center;
+  }
+
+  .nb-bottom.is-open a:not(.game-trigger) {
+    max-width: none;
   }
 
   .nb-menu.subnav {

@@ -1,7 +1,7 @@
 (() => {
   const HUB = 'https://hub.muimmortalbot.com/';
   const rail = document.querySelector('.nb-bottom');
-  const trigger = rail?.querySelector('.game-trigger');
+  const siteRoot = new URL('../', new URL(document.currentScript.src));
   const top = document.querySelector('.nb-top');
 
   if (top && !top.querySelector('.hub-nav-link')) {
@@ -14,18 +14,21 @@
     top.insertBefore(link, top.children[1] || null);
   }
 
-  const labels = {
-    'installation-download': 'Start', 'bot-settings-13': 'Overview',
-    'map-settings': 'Hunting', map: 'Boss Routes',
-    'elf-minion-settings': 'Buff & AFK', 'activities-settings': 'Events',
-    'others-settings': 'Settings', 'get-coordinates': 'Character',
-    'grab-store': 'Market & Stalls'
-  };
-
-  rail?.querySelectorAll('a:not(.game-trigger)').forEach((link) => {
-    const key = new URL(link.href).pathname.split('/').filter(Boolean).at(-2);
-    if (labels[key]) link.textContent = labels[key];
-  });
+  if (rail) {
+    const tabs = [
+      ['bot-settings-13/index.html', 'Overview'],
+      ['elf-minion-settings/index.html', 'Character'],
+      ['map-settings/index.html', 'Hunting'],
+      ['activities-settings/index.html', 'Events'],
+      ['grab-store/index.html', 'Market'],
+      ['pvp/index.html', 'PvP'],
+      ['character-list/index.html', 'List'],
+      ['others-settings/index.html', 'Settings']
+    ];
+    rail.innerHTML = `<a href="${new URL('mu/index.html', siteRoot)}" class="game-trigger" aria-expanded="${rail.classList.contains('is-open')}">MU</a>`
+      + tabs.map(([path, label]) => `<a href="${new URL(path, siteRoot)}">${label}</a>`).join('');
+  }
+  const trigger = rail?.querySelector('.game-trigger');
 
   if (rail && trigger) {
     const normalize = (path) => path.toLowerCase().replace(/\/index\.html$/, '/').replace(/\/+$/, '/');
@@ -92,41 +95,124 @@
 
   const pathParts = location.pathname.split('/').filter(Boolean);
   const section = pathParts.at(-1)?.toLowerCase() === 'index.html' ? pathParts.at(-2) : pathParts.at(-1);
-  const guide = guides[section];
-  if (!guide) return;
-  const photoSets = {
-    mu: [['master-exp.jpg', 'Web dashboard'], ['mystic-land.jpg', 'Mystic Land'], ['blood-castle.jpg', 'Blood Castle']],
-    'installation-download': [['master-exp.jpg', 'Web setup'], ['kundun.jpg', 'Kundun'], ['warrior-quest.jpg', 'Warrior Quest']],
-    'bot-settings-13': [['guild-boss.jpg', 'Live status'], ['pvp.jpg', 'PvP activity'], ['mystic-land.jpg', 'Daily progress']],
-    'map-settings': [['vip.jpg', 'VIP hunting'], ['excellent.jpg', 'Excellent bosses'], ['kundun.jpg', 'Boss route']],
-    map: [['kundun.jpg', 'Boss routes'], ['vip.jpg', 'VIP domain'], ['excellent.jpg', 'Excellent hunting']],
-    'elf-minion-settings': [['warrior-quest.jpg', 'Character automation'], ['mystic-land.jpg', 'AFK return'], ['guild-boss.jpg', 'Party support']],
-    'activities-settings': [['blood-castle.jpg', 'Blood Castle'], ['devil-square.jpg', 'Devil Square'], ['warrior-quest.jpg', 'Warrior Quest']],
-    'others-settings': [['master-exp.jpg', 'Web settings'], ['pvp.jpg', 'Alerts'], ['excellent.jpg', 'Live decisions']],
-    'get-coordinates': [['mystic-land.jpg', 'Live position'], ['kundun.jpg', 'Saved routes'], ['vip.jpg', 'Pinned locations']],
-    'grab-store': [['master-exp.jpg', 'Market control'], ['excellent.jpg', 'Buy orders'], ['guild-boss.jpg', 'Recent activity']]
+  const paneBySection = {
+    mu: 'overview', 'bot-settings-13': 'overview',
+    'elf-minion-settings': 'character', 'get-coordinates': 'character',
+    'map-settings': 'hunting', map: 'hunting',
+    'activities-settings': 'events', 'grab-store': 'market',
+    pvp: 'pvp', 'character-list': 'list',
+    'others-settings': 'settings', 'installation-download': 'setup'
   };
-  const photos = photoSets[section] || photoSets.mu;
+  const pane = paneBySection[section];
+  if (!pane) return;
   const container = document.querySelector('.container, .installsetup-container, .bot-settings-container, .mapsetup-container, .map-container, .elfsetup-container, .activities-container, .others-container, .coordinates-container, .grab-container');
   if (!container) return;
 
-  const [title, eyebrow, hash, lead, steps, tips] = guide;
-  document.title = `${title} — NovaBot`;
-  container.className = 'container hub-guide';
+  const img = (name) => new URL(`assets/hub/${name}`, siteRoot);
+  const logo = new URL('assets/novabot-logo.png', siteRoot);
+  const tabDefs = [
+    ['overview', 'bot-settings-13/index.html', 'Overview'],
+    ['character', 'elf-minion-settings/index.html', 'Character'],
+    ['hunting', 'map-settings/index.html', 'Hunting'],
+    ['events', 'activities-settings/index.html', 'Events'],
+    ['market', 'grab-store/index.html', 'Market'],
+    ['pvp', 'pvp/index.html', 'PvP'],
+    ['list', 'character-list/index.html', 'List'],
+    ['settings', 'others-settings/index.html', 'Settings']
+  ];
+  const hubTabs = tabDefs.map(([key, path, label]) => `<a class="hub-ui-tab${pane === key ? ' on' : ''}" href="${new URL(path, siteRoot)}">${label}${key === 'events' ? '<i>●</i>' : ''}</a>`).join('');
+  const toggle = (label, note, on = true) => `<div class="hub-switch"><div><b>${label}</b><small>${note}</small></div><span class="hub-toggle${on ? ' on' : ''}"><i></i></span></div>`;
+  const stat = (label, value, tone = '') => `<div class="hub-stat"><span>${label}</span><strong class="${tone}">${value}</strong></div>`;
+  const activity = (image, label, value, state = 'Ready') => `<article class="hub-activity" style="--activity:url('${img(image)}')"><div><span>${label}</span><strong>${value}</strong><small>${state}</small></div></article>`;
+
+  const panes = {
+    setup: `
+      <div class="hub-ui-grid setup-grid">
+        <section class="hub-ui-card hub-span-12"><div class="hub-card-head"><div><span class="hub-eyebrow">Setup wizard</span><h2>Three steps to connect NovaBot</h2></div><span class="hub-pill gold">WEB PANEL</span></div></section>
+        <section class="hub-ui-card hub-span-4 hub-setup-step done"><b>01</b><h3>License</h3><p>MU-••••••-••••••</p><span>Connected</span></section>
+        <section class="hub-ui-card hub-span-4 hub-setup-step active"><b>02</b><h3>Device</h3><p>Rooted cloud phone or Windows emulator</p><span>Agent online</span></section>
+        <section class="hub-ui-card hub-span-4 hub-setup-step"><b>03</b><h3>Game</h3><p>Open MU Immortal and select a character</p><span>Waiting for game</span></section>
+        <section class="hub-ui-card hub-span-8"><h2>Connected device</h2><div class="hub-device"><span>RF-Android-01</span><b>ONLINE</b></div><div class="hub-code">curl -s https://hub.muimmortalbot.com/setup | sh</div></section>
+        <section class="hub-ui-card hub-span-4 hub-art-card" style="--art:url('${img('master-exp.jpg')}')"><span>Setup</span><strong>Ready for web control</strong></section>
+      </div>`,
+    overview: `
+      <div class="hub-ui-grid">
+        <section class="hub-character hub-span-12" style="--hero:url('${img('master-exp.jpg')}')">
+          <img src="${logo}" alt="NovaBot"><div><span class="hub-eyebrow">Character</span><h2>NovaBot Demo</h2><p>S181 · Level 628 · Mystic Land</p></div><span class="hub-pill green">IN GAME</span>
+        </section>
+        <section class="hub-ui-card hub-span-8"><div class="hub-card-head"><h2>Daily jobs</h2><span class="hub-pill green">7 ACTIVE</span></div><div class="hub-activity-grid">${activity('mystic-land.jpg','Mystic Land','3 / 5','Running')}${activity('kundun.jpg','Kundun Trial','2 / 3')}${activity('warrior-quest.jpg','Warrior Quest','5 / 5','Done')}${activity('blood-castle.jpg','Blood Castle','Next 21:00','Waiting')}</div></section>
+        <section class="hub-ui-card hub-span-4"><div class="hub-card-head"><h2>Right now</h2><span class="hub-live-dot"></span></div><div class="hub-now"><span>BOSS</span><strong>Heading to Golden Boss</strong><small>Mystic Land · Wire 2 · 46 m</small></div>${toggle('Auto hunt','Following the saved route')}${toggle('Pickup','Rare items and above')}</section>
+        <section class="hub-ui-card hub-span-4"><h2>Hunting & deaths</h2><div class="hub-stats">${stat('Red boss','14','red')}${stat('Golden boss','6','gold')}${stat('Deaths','1')}</div></section>
+        <section class="hub-ui-card hub-span-4"><h2>MU Coin wallet</h2><div class="hub-balance">128,450 <small>MUC</small></div><div class="hub-delta"><span>Earned +18,200</span><span>Spent −4,800</span></div></section>
+        <section class="hub-ui-card hub-span-4"><h2>Boss tracking</h2><div class="hub-progress"><i style="width:72%"></i></div><p class="hub-muted">Route 5/7 · next: Kundun Trial</p></section>
+      </div>`,
+    character: `
+      <div class="hub-subtabs"><button class="on">Buff & AFK</button><button>Equipment</button><button>Inventory</button><button>Character</button></div>
+      <div class="hub-ui-grid">
+        <section class="hub-ui-card hub-span-7"><div class="hub-card-head"><h2>Buff pickup</h2><span class="hub-pill green">ACTIVE</span></div>${toggle('Get buff automatically','Travel when selected buffs expire')}${toggle('Return after buff','Continue the previous task')}${toggle('Invite buff elf','NovaElf, SupportElf')}<div class="hub-fields"><label>Wait at point<input value="5 minutes" readonly></label><label>Retry after<input value="20 minutes" readonly></label></div></section>
+        <section class="hub-ui-card hub-span-5 hub-art-card tall" style="--art:url('${img('warrior-quest.jpg')}')"><span>Saved position</span><strong>Lost Tower · Wire 3</strong><button>Pin current location</button></section>
+        <section class="hub-ui-card hub-span-6"><h2>AFK return</h2>${toggle('Return to farming point','After death or event')}${toggle('Auto revive','Birth point · 3 sec delay')}<div class="hub-coords"><span>X <b>289</b></span><span>Y <b>793</b></span><button>Clear</button></div></section>
+        <section class="hub-ui-card hub-span-6"><h2>Elf buff</h2>${toggle('Buff nearby players','Guild and party whitelist')}${toggle('Accept party requests','Trusted characters only')}<div class="hub-skill-row"><i>1</i><i>2</i><i>3</i><i>4</i><span>4 skills selected</span></div></section>
+      </div>`,
+    hunting: `
+      <div class="hub-subtabs"><button class="on">Boss hunt</button><button>Route</button><button>VIP</button><button>Pickup</button><button>Salvage</button></div>
+      <div class="hub-ui-grid">
+        <section class="hub-ui-card hub-span-8"><div class="hub-card-head"><div><span class="hub-eyebrow">Boss hunt</span><h2>Hunting: Golden Boss</h2></div><span class="hub-pill green">3 ALIVE</span></div><div class="hub-boss-board"><div class="hub-boss-target" style="--art:url('${img('excellent.jpg')}')"><span>Current target</span><strong>Golden Knight</strong><small>41 m · Wire 2</small></div><div class="hub-boss-list"><p><b class="red">●</b> Red Dragon <span>76 m</span></p><p><b class="gold">●</b> Golden Knight <span>41 m</span></p><p><b class="gold">●</b> Golden Titan <span>93 m</span></p></div></div></section>
+        <section class="hub-ui-card hub-span-4"><h2>Hunt settings</h2>${toggle('Red bosses','Enabled')}${toggle('Golden bosses','Enabled')}${toggle('Skip claimed','Other player owns loot')}<div class="hub-fields"><label>Priority<input value="Unclaimed first" readonly></label><label>Fight range<input value="3 cells" readonly></label></div></section>
+        <section class="hub-ui-card hub-span-12"><div class="hub-card-head"><h2>Map route</h2><span class="hub-muted">6 stops</span></div><div class="hub-route"><span class="here"><b>1</b>Mystic Land<small>W2</small></span><i>→</i><span><b>2</b>Kundun<small>W1</small></span><i>→</i><span><b>3</b>VIP Domain<small>F3</small></span><i>→</i><span><b>4</b>Excellent<small>W2</small></span></div></section>
+        <section class="hub-ui-card hub-span-7 hub-art-card route-art" style="--art:url('${img('vip.jpg')}')"><span>VIP hunting</span><strong>When the route is empty</strong><button>Floor 3 · Golden first</button></section>
+        <section class="hub-ui-card hub-span-5"><h2>Daily limit</h2><div class="hub-stats">${stat('Red','14 / 30','red')}${stat('Golden','6 / 20','gold')}</div><div class="hub-progress"><i style="width:47%"></i></div><p class="hub-muted">Boss hunting continues until both limits are reached.</p></section>
+      </div>`,
+    events: `
+      <div class="hub-subtabs"><button class="on">Daily jobs</button><button>Timed events</button><button>Recorder</button></div>
+      <div class="hub-event-wall">${[
+        ['blood-castle.jpg','Blood Castle','Open','2 / 3'],['devil-square.jpg','Devil Square','Opens 18:30','1 / 3'],['warrior-quest.jpg','Warrior Quest','Running','5 / 10'],['mystic-land.jpg','Mystic Land','Ready','3 / 5'],['guild-boss.jpg','Guild Boss','Tonight 21:00','Auto'],['pvp.jpg','3v3 Arena','Matching','4 / 5'],['kundun.jpg','Kundun Trial','Ready','2 / 3'],['excellent.jpg','Excellent Boss','Whole day','Auto']
+      ].map(([pic,name,state,count],i)=>`<article class="hub-event-card${i===2?' active':''}" style="--art:url('${img(pic)}')"><div class="hub-event-state">${state}</div><span>${name}</span><strong>${count}</strong><div class="hub-toggle on"><i></i></div></article>`).join('')}</div>`,
+    market: `
+      <div class="hub-subtabs"><button class="on">Buy orders</button><button>Divine Realm</button><button>Recent purchases</button><button>Inventory</button></div>
+      <div class="hub-ui-grid">
+        <section class="hub-ui-card hub-span-12 hub-market-hero" style="--art:url('${img('master-exp.jpg')}')"><div><span class="hub-eyebrow">MU Coin wallet</span><strong>128,450 <small>MUC</small></strong><p>Today: 8 purchases · −4,800 MUC</p></div><button>+ Item</button></section>
+        <section class="hub-ui-card hub-span-8"><div class="hub-card-head"><h2>Buy orders</h2><span class="hub-pill green">SCANNING</span></div><div class="hub-orders"><article><i>JOC</i><div><b>Jewel of Chaos</b><span>24 / 50 bought</span><div class="hub-progress"><i style="width:48%"></i></div></div><strong>≤ 1,080</strong></article><article><i>SS</i><div><b>Soul Stone</b><span>8 / 20 bought</span><div class="hub-progress"><i style="width:40%"></i></div></div><strong>≤ 860</strong></article><article><i>FL</i><div><b>Fluorite</b><span>Target reached</span><div class="hub-progress"><i style="width:100%"></i></div></div><strong>≤ 420</strong></article></div></section>
+        <section class="hub-ui-card hub-span-4"><h2>Market automation</h2>${toggle('Real buying','Orders may purchase')}${toggle('Scan Trading Hall','Active orders only')}${toggle('Rent a stall','Divine Realm')}<div class="hub-fields"><label>Daily cap<input value="25,000 MUC" readonly></label></div></section>
+        <section class="hub-ui-card hub-span-12"><h2>Recent purchases</h2><table class="hub-table"><thead><tr><th>Item</th><th>Source</th><th>Quantity</th><th>Unit price</th><th>Total</th></tr></thead><tbody><tr><td>Jewel of Chaos</td><td>Trading Hall</td><td>×3</td><td>980</td><td>2,940</td></tr><tr><td>Soul Stone</td><td>Stall 14</td><td>×2</td><td>820</td><td>1,640</td></tr></tbody></table></section>
+      </div>`,
+    pvp: `
+      <div class="hub-subtabs"><button class="on">Fight mode</button><button>Attackers</button><button>Counter attack</button></div>
+      <div class="hub-ui-grid">
+        <section class="hub-ui-card hub-span-12 hub-pvp-hero" style="--art:url('${img('pvp.jpg')}')"><div><span class="hub-eyebrow">PvP</span><h2>Attackers and fight mode</h2><p>Live protection rules from the web panel</p></div><span class="hub-pill green">MONITORING</span></section>
+        <section class="hub-ui-card hub-span-7"><h2>Fight mode</h2><div class="hub-mode-row"><button>Peace</button><button>Team</button><button>Guild</button><button>Cross Guild</button><button class="on">All</button></div>${toggle('Record players who hit me','Players only, not monsters')}${toggle('Notify on Telegram','Once per 5 minutes per player')}</section>
+        <section class="hub-ui-card hub-span-5"><h2>Counter attack</h2>${toggle('Attack whoever hits me','Chase and auto-fight')}${toggle('Switch to All mode','Restore previous mode after')}<div class="hub-fields"><label>Stop after<input value="15 seconds" readonly></label></div></section>
+        <section class="hub-ui-card hub-span-12"><div class="hub-card-head"><h2>Recent attackers</h2><button>Clear list</button></div><table class="hub-table"><thead><tr><th>Player</th><th>Map</th><th>Hits</th><th>Damage</th><th>Last seen</th></tr></thead><tbody><tr><td><b>DarkKnight</b></td><td>Mystic Land</td><td>12</td><td class="red">84,230</td><td>2 min ago</td></tr><tr><td><b>WizardX</b></td><td>VIP Domain</td><td>4</td><td>19,410</td><td>18 min ago</td></tr></tbody></table></section>
+      </div>`,
+    list: `
+      <div class="hub-ui-grid">
+        <section class="hub-ui-card hub-span-12"><div class="hub-card-head"><div><span class="hub-eyebrow">Account</span><h2>Character list</h2></div><div class="hub-search">Server no. or character</div></div><div class="hub-list-summary">${stat('Characters','4')}${stat('Online','3','green')}${stat('Total MUC','486,240','gold')}${stat('Diamonds','12,850')}</div></section>
+        <section class="hub-ui-card hub-span-12 hub-table-wrap"><table class="hub-table character-table"><thead><tr><th>Character</th><th>Main server</th><th>Cross servers</th><th>Level</th><th>MUC</th><th>Diamonds</th><th>Status</th></tr></thead><tbody><tr><td><div class="hub-char"><img src="${logo}" alt=""><b>NovaKnight</b></div></td><td>S181</td><td>S179 · S180</td><td>628</td><td>128,450</td><td>4,200</td><td><span class="hub-pill green">ONLINE</span></td></tr><tr><td><div class="hub-char"><img src="${logo}" alt=""><b>NovaElf</b></div></td><td>S181</td><td>S179 · S180</td><td>602</td><td>94,800</td><td>3,150</td><td><span class="hub-pill green">ONLINE</span></td></tr><tr><td><div class="hub-char"><img src="${logo}" alt=""><b>NovaMage</b></div></td><td>S205</td><td>Single server</td><td>577</td><td>178,320</td><td>4,900</td><td><span class="hub-pill gold">GAME CLOSED</span></td></tr><tr><td><div class="hub-char"><img src="${logo}" alt=""><b>NovaLord</b></div></td><td>S94</td><td>S92 · S93</td><td>511</td><td>84,670</td><td>600</td><td><span class="hub-pill green">ONLINE</span></td></tr></tbody></table></section>
+      </div>`,
+    settings: `
+      <div class="hub-subtabs"><button class="on">General</button><button>Telegram</button><button>Status card</button><button>Setup</button><button>Log</button></div>
+      <div class="hub-ui-grid">
+        <section class="hub-ui-card hub-span-6"><h2>General</h2><div class="hub-fields"><label>Language<select><option>English</option></select></label><label>Timezone<select><option>Server time</option></select></label></div>${toggle('In-game status card','Show the current bot decision')}${toggle('Automatic updates','Keep agent and rules current')}</section>
+        <section class="hub-ui-card hub-span-6"><div class="hub-card-head"><h2>Telegram</h2><span class="hub-pill green">CONNECTED</span></div>${toggle('Boss alerts','Red, golden and excellent')}${toggle('PvP alerts','Players who attack you')}${toggle('Event alerts','Open, joined and completed')}<button class="hub-button">Send test message</button></section>
+        <section class="hub-ui-card hub-span-7"><h2>In-game status card</h2><div class="hub-ingame-card"><span>BOSS</span><b>Heading to Golden Knight</b><small>Mystic Land · Wire 2 · 41 m</small></div>${toggle('Display card','Bottom centre of game')}</section>
+        <section class="hub-ui-card hub-span-5"><h2>License & device</h2><div class="hub-device"><span>NovaBot Demo</span><b>ACTIVE</b></div><p class="hub-muted">RF-Android-01 · Agent 2.4.1</p><button class="hub-button">Open setup</button></section>
+        <section class="hub-ui-card hub-span-12"><div class="hub-card-head"><h2>Recent events</h2><span class="hub-muted">Live log</span></div><div class="hub-log"><p><time>14:26:08</time><b>SAVED</b> Configuration applied</p><p><time>14:25:51</time><b>HUNT</b> Golden Knight selected · 41 m</p><p><time>14:24:13</time><b>EVENT</b> Blood Castle opens at 21:00</p></div></section>
+      </div>`
+  };
+
+  const titles = {setup:'Setup',overview:'Overview',character:'Character',hunting:'Hunting',events:'Events',market:'Market',pvp:'PvP',list:'List',settings:'Settings'};
+  document.title = `${titles[pane]} — NovaBot Web Hub`;
+  container.className = 'container hub-preview-page';
   container.innerHTML = `
-    <section class="hub-guide-hero">
-      <span class="release-badge">${eyebrow}</span><h1>${title}</h1><p>${lead}</p>
-      <div class="release-actions">
-        <a class="btn-nova" href="${HUB}#${hash}" target="_blank" rel="noopener">Open this section in the Hub</a>
-        <a class="btn-nova btn-secondary" href="../index.html">Back to NovaBot</a>
-      </div>
-      <div class="web-only-note"><strong>Web control hub</strong><span>Rooted cloud phone · Rooted Windows emulator</span></div>
-    </section>
-    <section class="guide-photo-strip" aria-label="MU Immortal Bot hub artwork">
-      ${photos.map(([file, caption]) => `<figure class="guide-photo"><img src="../assets/hub/${file}" alt="${caption}" loading="lazy"><figcaption>${caption}</figcaption></figure>`).join('')}
-    </section>
-    <section class="guide-steps" aria-label="Guide steps">
-      ${steps.map(([heading, text], index) => `<article class="guide-step"><span>${index + 1}</span><div><h2>${heading}</h2><p>${text}</p></div></article>`).join('')}
-    </section>
-    <section class="hub-tips"><h2>Good to know</h2><ul>${tips.map((tip) => `<li>${tip}</li>`).join('')}</ul></section>`;
+    <section class="hub-ui-shell">
+      <header class="hub-ui-top">
+        <div class="hub-ui-brand"><img src="${img('hub-logo.png')}" alt="MU Immortal Bot"><div><span class="hub-eyebrow">MU Immortal</span><h1>MU Service Panel</h1></div></div>
+        <div class="hub-lamps"><span><i class="on"></i>License</span><span><i class="on"></i>Agent</span><span><i class="on"></i>Game</span></div>
+        <a href="${HUB}" target="_blank" rel="noopener">Open live hub ↗</a>
+      </header>
+      <div class="hub-license-bar"><button class="on"><i></i>NovaBot Demo<small>S181 · Online</small></button><span>Rooted device connected</span></div>
+      ${pane === 'setup' ? '' : `<nav class="hub-ui-tabs">${hubTabs}</nav>`}
+      <main class="hub-ui-pane">${panes[pane]}</main>
+      <footer class="hub-ui-footer"><span>Interface preview based on the live MU Immortal Bot Hub</span><a href="${HUB}" target="_blank" rel="noopener">Launch Web Hub</a></footer>
+    </section>`;
 })();

@@ -94,6 +94,19 @@
   const section = pathParts.at(-1)?.toLowerCase() === 'index.html' ? pathParts.at(-2) : pathParts.at(-1);
   const guide = guides[section];
   if (!guide) return;
+  const photoSets = {
+    mu: [['master-exp.jpg', 'Web dashboard'], ['mystic-land.jpg', 'Mystic Land'], ['blood-castle.jpg', 'Blood Castle']],
+    'installation-download': [['master-exp.jpg', 'Web setup'], ['kundun.jpg', 'Kundun'], ['warrior-quest.jpg', 'Warrior Quest']],
+    'bot-settings-13': [['guild-boss.jpg', 'Live status'], ['pvp.jpg', 'PvP activity'], ['mystic-land.jpg', 'Daily progress']],
+    'map-settings': [['vip.jpg', 'VIP hunting'], ['excellent.jpg', 'Excellent bosses'], ['kundun.jpg', 'Boss route']],
+    map: [['kundun.jpg', 'Boss routes'], ['vip.jpg', 'VIP domain'], ['excellent.jpg', 'Excellent hunting']],
+    'elf-minion-settings': [['warrior-quest.jpg', 'Character automation'], ['mystic-land.jpg', 'AFK return'], ['guild-boss.jpg', 'Party support']],
+    'activities-settings': [['blood-castle.jpg', 'Blood Castle'], ['devil-square.jpg', 'Devil Square'], ['warrior-quest.jpg', 'Warrior Quest']],
+    'others-settings': [['master-exp.jpg', 'Web settings'], ['pvp.jpg', 'Alerts'], ['excellent.jpg', 'Live decisions']],
+    'get-coordinates': [['mystic-land.jpg', 'Live position'], ['kundun.jpg', 'Saved routes'], ['vip.jpg', 'Pinned locations']],
+    'grab-store': [['master-exp.jpg', 'Market control'], ['excellent.jpg', 'Buy orders'], ['guild-boss.jpg', 'Recent activity']]
+  };
+  const photos = photoSets[section] || photoSets.mu;
   const container = document.querySelector('.container, .installsetup-container, .bot-settings-container, .mapsetup-container, .map-container, .elfsetup-container, .activities-container, .others-container, .coordinates-container, .grab-container');
   if (!container) return;
 
@@ -108,6 +121,9 @@
         <a class="btn-nova btn-secondary" href="../index.html">Back to NovaBot</a>
       </div>
       <div class="web-only-note"><strong>Web control hub</strong><span>Rooted cloud phone · Rooted Windows emulator</span></div>
+    </section>
+    <section class="guide-photo-strip" aria-label="MU Immortal Bot hub artwork">
+      ${photos.map(([file, caption]) => `<figure class="guide-photo"><img src="../assets/hub/${file}" alt="${caption}" loading="lazy"><figcaption>${caption}</figcaption></figure>`).join('')}
     </section>
     <section class="guide-steps" aria-label="Guide steps">
       ${steps.map(([heading, text], index) => `<article class="guide-step"><span>${index + 1}</span><div><h2>${heading}</h2><p>${text}</p></div></article>`).join('')}

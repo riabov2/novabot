@@ -51,9 +51,9 @@
     mu: ['NovaBot × MU Immortal Bot', 'Official collaboration', 'overview',
       'NovaBot now works with the MU Immortal Bot web platform. Setup, live status, hunting, events, market tools, and settings are available from one browser-based hub.',
       [['Sign in', 'Open the hub and select the license or character you want to manage.'], ['Configure', 'Change automation rules in the browser and save them to the active service.'], ['Monitor', 'Follow live status, tasks, hunting results, and alerts from any modern browser.']],
-      ['No RedFinger or cloud phone is required.', 'Works from desktop and mobile browsers.', 'The hub stays aligned with active bot features.']],
+      ['A compatible cloud phone or Android device runs the game.', 'Control the bot from desktop and mobile browsers.', 'The hub stays aligned with active bot features.']],
     'installation-download': ['Start in the Web Hub', 'Web setup', 'setup',
-      'NovaBot setup and control now happen in the browser. No RedFinger, cloud phone, emulator download, or local bot package is required.',
+      'NovaBot setup and control now happen in the browser. Keep the game running on a compatible cloud phone or Android device, then manage the active bot from the web hub.',
       [['Open the hub', 'Sign in with the account provided to you.'], ['Add your license', 'Open Setup, enter your NovaBot license key, and select the attached character.'], ['Configure in browser', 'Set hunting, buffs, events, market rules, and notifications, then press Save.']],
       ['Use the English language selector in the hub.', 'Keep your license key private.', 'Open Overview after saving to confirm the active status.']],
     'bot-settings-13': ['Overview & Live Status', 'Web guide', 'overview',
@@ -107,7 +107,7 @@
         <a class="btn-nova" href="${HUB}#${hash}" target="_blank" rel="noopener">Open this section in the Hub</a>
         <a class="btn-nova btn-secondary" href="../index.html">Back to NovaBot</a>
       </div>
-      <div class="web-only-note"><strong>100% web control</strong><span>No RedFinger · No cloud phone · No emulator dashboard</span></div>
+      <div class="web-only-note"><strong>Web control hub</strong><span>Browser configuration · Cloud phone game runtime</span></div>
     </section>
     <section class="guide-steps" aria-label="Guide steps">
       ${steps.map(([heading, text], index) => `<article class="guide-step"><span>${index + 1}</span><div><h2>${heading}</h2><p>${text}</p></div></article>`).join('')}

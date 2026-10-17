@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/marketing.css?v=3">
+  <link rel="stylesheet" href="assets/marketing.css?v=4">
   <meta property="og:type" content="website"><meta property="og:site_name" content="NovaBot"><meta property="og:title" content="MU Immortal Bot — NovaBot"><meta property="og:description" content="Real MU automation, controlled from the NovaBot Customer Hub."><meta property="og:url" content="https://novabotmu.com/"><meta property="og:image" content="https://novabotmu.com/assets/og-novabot.jpg"><meta name="twitter:card" content="summary_large_image">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6YQ0S1P6NE"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-6YQ0S1P6NE');</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://novabotmu.com/#organization","name":"NovaBot","url":"https://novabotmu.com/","logo":"https://novabotmu.com/assets/novabot-brand.png","sameAs":["https://t.me/mukeyss","https://facebook.com/novabotmu"]},{"@type":"WebSite","url":"https://novabotmu.com/","name":"NovaBot","publisher":{"@id":"https://novabotmu.com/#organization"}},{"@type":"SoftwareApplication","name":"NovaBot","applicationCategory":"GameApplication","operatingSystem":"Rooted Android","description":"Browser controlled automation for supported MU mobile games.","featureList":["Auto Hunt","Boss Hunting","Game Events","Counterattack","Remote Control","Multi Account Management","Character Progress"]}]}</script>
@@ -41,12 +41,54 @@
       <div class="hero-product reveal" aria-label="NovaBot Customer Hub preview">
         <div class="product-bar"><div class="hub-logo"><img src="assets/novabot-brand.webp" alt=""><strong>NovaBot</strong></div><div class="signal-strip"><span><i class="dot green"></i>License</span><span><i class="dot green"></i>Agent</span><span><i class="dot green"></i>Game</span></div><button class="demo-user">demo@novabot.mu</button></div>
         <div class="slot-rail"><button class="slot active"><i class="dot green"></i>NovaBot <small>Run</small></button><button class="slot"><i class="dot gold"></i>Vault Elf <small>Pause</small></button><button class="slot add">＋ Add license</button></div>
-        <div class="product-tabs"><span class="active">Overview</span><span>Character</span><span>Hunting</span><span>Events</span><span>Market</span><span>PvP</span><span>Settings</span></div>
+        <div class="product-tabs" role="tablist" aria-label="Explore NovaBot Hub">
+          <button class="active" role="tab" aria-selected="true" data-demo-tab="overview">Overview</button>
+          <button role="tab" aria-selected="false" data-demo-tab="character">Character</button>
+          <button role="tab" aria-selected="false" data-demo-tab="hunting">Hunting</button>
+          <button role="tab" aria-selected="false" data-demo-tab="events">Events</button>
+          <button role="tab" aria-selected="false" data-demo-tab="market">Market</button>
+          <button role="tab" aria-selected="false" data-demo-tab="pvp">PvP</button>
+          <button role="tab" aria-selected="false" data-demo-tab="settings">Settings</button>
+          <span class="tour-progress" aria-hidden="true"><i></i></span>
+        </div>
+        <div class="demo-stage">
+        <div class="demo-panel active" data-demo-panel="overview">
         <div class="character-hero">
           <img class="character-art" src="assets/hub/class-3.jpg" alt="MU character background"><div class="character-shade"></div>
           <div class="character-main"><div class="avatar"><img src="assets/hub/class-p3.png" alt="Elf portrait"></div><div><small>CHARACTER</small><h2>NovaBot <b>Lv 107</b></h2><p>Atlans 1 · Wire 1 · X 142 · Y 87</p></div></div>
           <div class="character-actions"><span class="mode">Peace</span><button>Ⅱ Pause Bot</button></div>
           <div class="activity-now"><small>RIGHT NOW</small><strong><i class="dot green"></i> Hunting Golden bosses</strong><span>Last game state received now</span></div>
+        </div></div>
+        <div class="demo-panel" data-demo-panel="character">
+          <div class="demo-heading"><div><small>CHARACTER</small><h3>Companion & progress</h3></div><span class="switch on"></span></div>
+          <div class="hero-character-grid">
+            <div class="hero-pets"><article class="active"><img src="assets/hub/guardian-angel.png" alt=""><span><small>DEFENSE</small><b>Guardian Angel</b><em>Equipped</em></span></article><article><img src="assets/hub/imp.png" alt=""><span><small>DAMAGE</small><b>Imp</b><em>Ready</em></span></article></div>
+            <div class="hero-module-list"><div><span>Main Quest</span><b>Target Lv.150</b><i class="dot green"></i></div><div><span>Gear upgrade</span><b>Target +9</b><i class="dot gold"></i></div><div><span>Fluorite</span><b>Ice · Lv.9</b><i class="dot blue"></i></div><div><span>Element / Errtel</span><b>Max Lv.8</b><i class="dot green"></i></div></div>
+          </div>
+        </div>
+        <div class="demo-panel" data-demo-panel="hunting">
+          <div class="demo-heading"><div><small>HUNTING</small><h3>Boss route control</h3></div><span class="switch on"></span></div>
+          <div class="hero-hunt"><div class="hero-target"><img src="assets/hub/skull-gold.png" alt=""><span><small>CURRENT TARGET</small><b>Golden Dragon</b><em>Atlans 1 · Wire 1</em></span><strong>420m</strong></div><div class="hero-filter"><span class="active">All</span><span>Alive</span><span>Golden</span><span>Red</span></div><div class="hero-settings"><div><small>PRIORITY</small><b>Golden first</b></div><div><small>ORDER</small><b>Nearest alive</b></div><div><small>FALLBACK</small><b>VIP Domain</b></div></div><div class="hero-route"><i class="dot green"></i><span>Atlans 1</span><b>→</b><span>Lost Tower</span><b>→</b><span>Tarkan</span></div></div>
+        </div>
+        <div class="demo-panel" data-demo-panel="events">
+          <div class="demo-heading"><div><small>EVENTS</small><h3>Daily priority & schedule</h3></div><span class="pill-demo">AUTOMATED</span></div>
+          <div class="hero-events"><article style="--mini:url('assets/hub/act-ml.jpg')"><span>Mystic Land</span><b>3 / 3</b><em>Done</em></article><article style="--mini:url('assets/hub/act-wq.jpg')"><span>Warrior Quest</span><b>3 / 3</b><em>Done</em></article><article style="--mini:url('assets/hub/act-kd.jpg')"><span>Kundun Trial</span><b>22:00</b><em class="wait">Waiting</em></article><article style="--mini:url('assets/hub/act-bc.jpg')"><span>Blood Castle</span><b>18:30</b><em class="wait">Waiting</em></article></div>
+          <div class="hero-priority"><span><small>MODE</small><b>Dailies first</b></span><span><small>DAILY HOURS</small><b>08:00 — 23:30</b></span><span><small>BOSS HOURS</small><b>00:00 — 23:59</b></span></div>
+        </div>
+        <div class="demo-panel" data-demo-panel="market">
+          <div class="demo-heading"><div><small>MARKET</small><h3>Purchases & item alerts</h3></div><span class="pill-demo live">LIVE</span></div>
+          <div class="hero-market"><div class="market-summary"><small>TODAY SPENT</small><strong>86,400 <em>MUC</em></strong><span>12 purchases · limits respected</span></div><div class="market-orders"><div><span>Jewel of Bless</span><b>312 / 500</b><em>≤ 8,000</em></div><div><span>Jewel of Soul</span><b>96 / 200</b><em>≤ 12,500</em></div><div><span>Excellent Demonic Boots</span><b>Alert</b><em>2 options</em></div></div></div>
+          <div class="hero-log"><span>19:21:02</span><b>MARKET</b><p>Bought Jewel of Soul ×6 from Trading Hall</p></div>
+        </div>
+        <div class="demo-panel" data-demo-panel="pvp">
+          <div class="demo-heading"><div><small>PVP</small><h3>Counterattack</h3></div><span class="switch on"></span></div>
+          <div class="hero-fight-mode"><span>Peace</span><span>Team</span><span>Guild</span><span>Cross Guild</span><span class="active">All</span></div>
+          <div class="hero-pvp"><div class="hero-attacker"><small>WHO ATTACKED ME</small><strong>DarkKnight</strong><span>Tarkan · 3 hits · 12,480 damage</span></div><img src="assets/hub/sword-btn.png" alt=""><div class="hero-counter"><small>COUNTER STATUS</small><strong>Ready</strong><span>Restore fight mode after 30s</span></div></div>
+        </div>
+        <div class="demo-panel" data-demo-panel="settings">
+          <div class="demo-heading"><div><small>SETTINGS</small><h3>Alerts & game watch</h3></div><span class="pill-demo">TELEGRAM</span></div>
+          <div class="hero-settings-grid"><article><span class="hero-tg">➤</span><div><small>TELEGRAM CONNECTION</small><b>Connected</b><em>All characters on this account</em></div><span class="switch on"></span></article><article><span>♧</span><div><small>SALE & BID NOTIFICATIONS</small><b>Instant market updates</b><em>Panel bell and Telegram</em></div><span class="switch on"></span></article><article><span>◉</span><div><small>GAME WATCH</small><b>Recovery monitoring</b><em>Alerts if fresh state stops</em></div><span class="switch on"></span></article></div>
+        </div>
         </div>
       </div>
     </div>
@@ -130,6 +172,6 @@
   <section class="cta"><div class="shell"><img src="assets/novabot-brand.webp" width="118" height="118" alt="NovaBot crest"><div><div class="eyebrow">YOUR GAME. YOUR CONTROL.</div><h2>Open the real NovaBot Customer Hub.</h2><p>Create your account, start a trial and connect a game slot.</p></div><a class="button primary" href="https://app.novabotmu.com/novabot/">Get Started</a></div></section>
 </main>
 <footer class="site-footer"><div class="shell footer-grid"><div class="footer-brand"><a class="brand" href="#home"><img src="assets/novabot-brand.webp" width="52" height="52" alt=""><span>NovaBot</span></a><p>Remote MU automation controlled from the web.</p></div><div><h2>Product</h2><a href="#games">Games</a><a href="#features">Features</a><a href="#events">Events</a><a href="#hub">Customer Hub</a></div><div><h2>Resources</h2><a href="mu/">Guides</a><a href="contact-us/">Contact</a><a href="privacy/">Privacy Policy</a><a href="terms-and-conditions/">Terms of Service</a></div><div><h2>Account</h2><a href="https://app.novabotmu.com/novabot/">Login</a><a href="https://app.novabotmu.com/novabot/">Register</a><a href="https://app.novabotmu.com/novabot/">Open Hub</a></div></div><div class="shell footer-bottom"><span>© 2026 NovaBot. All rights reserved.</span><span>NovaBot is an independent product.</span></div></footer>
-<script src="assets/marketing.js?v=3" defer></script>
+<script src="assets/marketing.js?v=4" defer></script>
 </body>
 </html>

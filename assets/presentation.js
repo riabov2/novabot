@@ -1,0 +1,10 @@
+const nav=document.querySelector('.story-nav');
+const menu=document.querySelector('.menu-button');
+menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});
+nav?.addEventListener('click',e=>{if(e.target.closest('a')){nav.classList.remove('open');menu?.setAttribute('aria-expanded','false');}});
+const sections=[...document.querySelectorAll('[data-chapter]')];
+const links=[...document.querySelectorAll('.story-nav a')];
+const show=id=>links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
+const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){entry.target.classList.add('in-view');show(entry.target.id);}}},{rootMargin:'-28% 0px -60%',threshold:.02});
+sections.forEach(section=>observer.observe(section));
+document.querySelectorAll('.toggle,.choice-row span,.choice-row b').forEach(el=>el.addEventListener('click',()=>{if(el.classList.contains('toggle'))el.classList.toggle('on');}));

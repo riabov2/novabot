@@ -28,3 +28,7 @@ footer{max-width:1240px;display:grid;grid-template-columns:1fr auto;gap:8px 20px
 @media(max-width:560px){.header-actions{flex-wrap:wrap}.contact-links{margin:0 auto}.header-actions .hub-button{flex-basis:100%}}
 
 .overview-screen{border-top-color:transparent}
+
+.not-found-page{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% 20%,#122b50,#07162b 58%)}
+.not-found{width:min(680px,100%);padding:48px;border:1px solid #29496d;border-radius:18px;background:rgba(8,21,42,.92);box-shadow:0 24px 70px rgba(0,0,0,.34);text-align:center}
+.not-found>img{width:108px;height:108px;object-fit:contain;margin-bottom:20px}.not-found h1{margin:0 0 16px;font-size:clamp(40px,7vw,72px)}.not-found p{color:var(--muted);font-size:18px}.not-found .actions{justify-content:center}

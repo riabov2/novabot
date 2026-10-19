@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
 const checkOnly = process.argv.includes('--check');
-const publicEntries = ['index.html', '404.html', 'robots.txt', 'sitemap.xml', '_headers', '_redirects', 'assets'];
+const publicEntries = ['index.html', '404.html', 'mu-immortal-bot', 'robots.txt', 'sitemap.xml', '_headers', '_redirects', 'assets'];
 const requiredFiles = [...publicEntries, 'package.json'];
 
 const fail = message => {
@@ -58,10 +58,31 @@ const resolvePublicReference = (sourceFile, reference) => {
   return clean.startsWith('/') ? join(root, clean.slice(1)) : resolve(dirname(sourceFile), clean);
 };
 
-for (const htmlName of ['index.html', '404.html']) {
+const htmlNames = publishableFiles
+  .filter(file => extname(file).toLowerCase() === '.html')
+  .map(file => relative(root, file));
+const indexableCanonicals = new Set();
+const indexableTitles = new Set();
+
+for (const htmlName of htmlNames) {
   const htmlFile = join(root, htmlName);
   const html = readFileSync(htmlFile, 'utf8');
   const ids = new Set([...html.matchAll(/\sid=["']([^"']+)["']/g)].map(match => match[1]));
+  if (htmlName !== '404.html') {
+    const title = html.match(/<title>(.*?)<\/title>/s)?.[1].trim();
+    const description = html.match(/<meta\s+name=["']description["']\s+content=["']([^"']+)["']/i)?.[1].trim();
+    const canonical = html.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/i)?.[1].trim();
+    const ogUrl = html.match(/<meta\s+property=["']og:url["']\s+content=["']([^"']+)["']/i)?.[1].trim();
+    const h1Count = [...html.matchAll(/<h1(?:\s|>)/gi)].length;
+    if (!title || !description || !canonical || !ogUrl) fail(`Incomplete SEO metadata in ${htmlName}`);
+    if (!canonical.startsWith('https://novabotmu.com/')) fail(`Unexpected canonical origin in ${htmlName}`);
+    if (canonical !== ogUrl) fail(`Canonical and og:url differ in ${htmlName}`);
+    if (h1Count !== 1) fail(`Expected one H1 in ${htmlName}, found ${h1Count}`);
+    if (indexableTitles.has(title)) fail(`Duplicate SEO title in ${htmlName}`);
+    if (indexableCanonicals.has(canonical)) fail(`Duplicate canonical URL in ${htmlName}`);
+    indexableTitles.add(title);
+    indexableCanonicals.add(canonical);
+  }
   for (const match of html.matchAll(/(?:src|href)=["']([^"']+)["']/g)) {
     const reference = match[1];
     if (/^(?:https?:|mailto:|tel:|data:)/i.test(reference)) continue;
@@ -72,6 +93,17 @@ for (const htmlName of ['index.html', '404.html']) {
     const target = resolvePublicReference(htmlFile, reference);
     if (!existsSync(target)) fail(`Broken local reference in ${htmlName}: ${reference}`);
   }
+  for (const match of html.matchAll(/url\(["']?([^"')]+)["']?\)/g)) {
+    const reference = match[1];
+    if (/^(?:https?:|data:)/i.test(reference)) continue;
+    const target = resolvePublicReference(htmlFile, reference);
+    if (!existsSync(target)) fail(`Broken inline CSS asset reference in ${htmlName}: ${reference}`);
+  }
+}
+
+const sitemap = readFileSync(join(root, 'sitemap.xml'), 'utf8');
+for (const canonical of indexableCanonicals) {
+  if (!sitemap.includes(`<loc>${canonical}</loc>`)) fail(`Canonical URL is absent from sitemap.xml: ${canonical}`);
 }
 
 const cssFile = join(root, 'assets', 'presentation.css');

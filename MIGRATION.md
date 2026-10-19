@@ -1,37 +1,72 @@
-# NovaBot URL migration map
+# NovaBot SEO migration: GitHub Pages to novabotmu.com
 
-The previous public site used `https://riabov2.github.io/novabot/`. The production canonical origin is `https://novabotmu.com/`.
+The previous indexed site is `https://riabov2.github.io/novabot/`. The only production canonical origin after launch will be `https://novabotmu.com/`.
 
-## Indexed URLs confirmed before launch
+## Verified search value
 
-| Previous URL | New destination | Reason |
-| --- | --- | --- |
-| `/novabot/` | `https://novabotmu.com/` | Main NovaBot presentation |
-| `/novabot/mu/` | `https://novabotmu.com/#overview` | Current MU automation overview |
+Owner-supplied Google Search Console data for the previous site reports about 1,600 clicks, 8,470 impressions, 18.8% CTR and average position 4.5 over three months. The top queries include `mu immortal bot`, `mu monarch bot`, `bot key mu monarch`, `mu monarch bot key`, `bot mu immortal`, `mu bot`, `mu monarch bot key free`, `bot para mu immortal`, `mu monarch sea bot` and `mu online bot`.
 
-## Other routes present in the previous repository
+Because the old property still receives traffic, the redirect-only GitHub Pages release is a launch gate. Do not disable the old Pages site or replace it with a second copy of the new website.
 
-| Previous path | New destination |
+## Complete old-to-new URL map
+
+| Previous URL | New destination |
 | --- | --- |
-| `/about/` | `/#overview` |
-| `/character-list/` | `/#overview` |
-| `/activities-settings/` | `/#events` |
-| `/bot-settings-13/` | `/#character` |
-| `/elf-minion-settings/` | `/#hunting` |
-| `/get-coordinates/` | `/#hunting` |
-| `/map/` | `/#hunting` |
-| `/map-settings/` | `/#hunting` |
-| `/grab-store/` | `/#market` |
-| `/installation-download/` | `/#connect` |
-| `/mu-bot-keys/` | `/#connect` |
-| `/others-settings/` | `/#settings` |
-| `/pvp/` | `/#pvp` |
-| `/contact-us/` | `/#contact` |
+| `/novabot/` and `/novabot/index.html` | `https://novabotmu.com/` |
+| `/novabot/mu/` | `https://novabotmu.com/mu-immortal-bot/` |
+| `/novabot/about/` | `https://novabotmu.com/#overview` |
+| `/novabot/character-list/` | `https://novabotmu.com/#overview` |
+| `/novabot/activities-settings/` | `https://novabotmu.com/#events` |
+| `/novabot/bot-settings-13/` | `https://novabotmu.com/#character` |
+| `/novabot/elf-minion-settings/` | `https://novabotmu.com/#hunting` |
+| `/novabot/get-coordinates/` | `https://novabotmu.com/#hunting` |
+| `/novabot/map/` | `https://novabotmu.com/#hunting` |
+| `/novabot/map-settings/` | `https://novabotmu.com/#hunting` |
+| `/novabot/grab-store/` | `https://novabotmu.com/#market` |
+| `/novabot/installation-download/` | `https://novabotmu.com/#connect` |
+| `/novabot/mu-bot-keys/` | `https://novabotmu.com/#connect` |
+| `/novabot/others-settings/` | `https://novabotmu.com/#settings` |
+| `/novabot/pvp/` | `https://novabotmu.com/#pvp` |
+| `/novabot/contact-us/` | `https://novabotmu.com/#contact` |
+| `/novabot/terms-and-conditions/` | `https://novabotmu.com/` until owner-approved legal content exists on the new domain |
 
-These path redirects are implemented in `_redirects` for the new Cloudflare Pages origin. The old Terms & Conditions page has no equivalent in the current approved site and is intentionally not redirected to unrelated content.
+The source list was checked against the files in `origin/main`. `_redirects` implements the equivalent path redirects when those paths are requested on the new Cloudflare origin.
 
-## Old GitHub Pages hostname
+## GitHub Pages limitation and prepared solution
 
-Cloudflare cannot emit redirects for the `riabov2.github.io` hostname because Cloudflare does not control that origin. Before launch, keep GitHub Pages enabled long enough to point the old site to `https://novabotmu.com/`, or publish a minimal redirect-only branch there. Verify both the old GitHub Pages property and the new domain property in Google Search Console. Do not remove the old property until Google has processed the canonical migration.
+Cloudflare cannot return an HTTP redirect for `riabov2.github.io` because that hostname is served by GitHub. GitHub Pages is static hosting and the current project-site arrangement does not provide per-route server-side 301 rules.
 
-Search Console data supplied before launch confirms that the previous property still has valuable impressions, clicks and first-page positions. Treat the old-host redirect as a launch gate: do not abandon the GitHub Pages origin or remove its Search Console property while Google is transferring signals to the new canonical domain.
+The local command below builds a minimal redirect-only Pages artifact:
+
+```powershell
+npm run build:migration
+```
+
+`migration-dist/` contains one small page for every mapped old route. Each page has:
+
+- a canonical URL on `novabotmu.com`;
+- an instant `meta refresh` to the final destination;
+- a JavaScript `location.replace` fallback;
+- a normal link for users without scripting;
+- an old-origin sitemap for migration monitoring.
+
+Google documents instant `meta refresh` as a permanent redirect signal when server-side redirects are unavailable. It remains a fallback to a real 301, so the migration must be monitored carefully. Do not configure `novabotmu.com` as a GitHub Pages custom domain because production remains on Cloudflare Pages.
+
+At launch, publish only the contents of `migration-dist/` to the branch selected as the GitHub Pages source. Never publish the full new site on both hostnames.
+
+## Search Console procedure
+
+1. Keep the existing `https://riabov2.github.io/novabot/` URL-prefix property verified.
+2. Verify the `novabotmu.com` Domain property using the DNS TXT value provided by Google.
+3. Deploy and validate the new Cloudflare site before changing the old Pages content.
+4. Submit `https://novabotmu.com/sitemap.xml` in the new property.
+5. Publish the generated redirect-only artifact to GitHub Pages and submit `https://riabov2.github.io/novabot/sitemap.xml` in the old property for migration monitoring.
+6. Inspect the old root, old `/mu/`, new root and new `/mu-immortal-bot/` URLs.
+7. Compare clicks, impressions, queries, indexing and crawl errors weekly for at least 12 weeks.
+8. Keep the redirects for at least one year and preferably indefinitely.
+
+The Change of Address tool is not expected to apply: the old property is a project path under the shared `github.io` domain rather than a domain-level site that the owner controls. Use URL mapping, redirect signals, canonicals and sitemaps instead.
+
+## Product support limitation
+
+The previous site claimed MU Monarch and MU Ascension support, and several high-performing queries concern MU Monarch. The current verified product and Hub content describe MU Immortal. No MU Monarch or MU Ascension landing page is created until the owner confirms that the current product still supports those games and supplies accurate capabilities. Launching without that confirmation may reduce rankings for those queries, but publishing unsupported claims would be misleading.

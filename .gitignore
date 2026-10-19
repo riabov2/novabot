@@ -9,6 +9,7 @@
 
 # Generated output and local tools
 dist/
+migration-dist/
 node_modules/
 .wrangler/
 .dev.vars

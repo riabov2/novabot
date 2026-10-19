@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "check": "node scripts/build.mjs --check",
-    "build": "node scripts/build.mjs"
+    "build": "node scripts/build.mjs",
+    "build:migration": "node scripts/build-github-pages-redirects.mjs"
   }
 }

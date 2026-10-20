@@ -1,7 +1,9 @@
 # Previous public pages mapped to the closest section of the new presentation.
 /index.html / 301
-/mu /mu-immortal-bot/ 301
-/mu/* /mu-immortal-bot/ 301
+/mu-immortal-bot / 301
+/mu-immortal-bot/* / 301
+/mu / 301
+/mu/* / 301
 /about /#overview 301
 /about/* /#overview 301
 /character-list /#overview 301

@@ -11,9 +11,9 @@
 ## Completed local improvements
 
 - Canonical origin fixed to `https://novabotmu.com/`.
-- Unique title, description, H1, canonical and social metadata for every indexable page.
-- Dedicated, crawlable `/mu-immortal-bot/` page with accurate product content.
-- Crawlable links between the homepage, MU Immortal landing page and Customer Hub.
+- One indexable homepage with a focused title, description, H1, canonical and social metadata.
+- MU Immortal product content consolidated on the homepage without a duplicate landing page.
+- Crawlable links between the homepage sections and Customer Hub.
 - Valid `robots.txt`, XML sitemap, custom 404, Open Graph image and SoftwareApplication structured data.
 - Security and cache headers prepared for Cloudflare Pages.
 - Permanent path rules prepared for requests that reach the new origin.
@@ -24,8 +24,7 @@
 
 | Page | SEO title | Meta description focus | Assigned queries |
 | --- | --- | --- | --- |
-| `/` | `NovaBot — MU Immortal Automation & Remote Control` | Full NovaBot platform, remote control and feature coverage | `mu bot`, `mu online bot`, branded queries |
-| `/mu-immortal-bot/` | `MU Immortal Bot – Automation & Remote Control \| NovaBot` | MU Immortal status, progression, hunting, events, market, PvP and pairing | `mu immortal bot`, `bot mu immortal`, `mu immortal auto farm` |
+| `/` | `NovaBot — MU Immortal Automation & Remote Control` | MU Immortal status, progression, hunting, events, market, PvP, pairing and remote control | `mu immortal bot`, `bot mu immortal`, `mu bot`, `mu online bot`, branded queries |
 
 `mu immortal bot download` is not targeted as a download page because the approved website does not currently expose a public APK download. Queries containing `free key` are not targeted because no free-key offer was verified.
 

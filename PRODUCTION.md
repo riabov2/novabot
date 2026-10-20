@@ -123,7 +123,7 @@ If the marketing deployment fails, use Cloudflare Pages deployment history to ro
 | Route | Purpose |
 | --- | --- |
 | `/` | Main NovaBot platform presentation |
-| `/mu-immortal-bot/` | Search landing page for the verified MU Immortal product |
+| `/mu-immortal-bot/` | Permanent redirect to `/` |
 | `/404.html` | Branded not-found page, excluded from indexing |
 
 Do not add MU Monarch or MU Ascension pages until current support is confirmed. The historical query risk and redirect method are documented in `SEO-AUDIT.md` and `MIGRATION.md`.

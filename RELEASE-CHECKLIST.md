@@ -13,7 +13,7 @@
 - [ ] Allow preview builds only from `redesign-2026`.
 - [ ] Enable Cloudflare Access for preview deployments.
 - [ ] Confirm the preview response includes `X-Robots-Tag: noindex`.
-- [ ] Test `/`, `/mu-immortal-bot/`, `/404.html`, all assets and Customer Hub links on the immutable preview URL.
+- [ ] Test `/`, the `/mu-immortal-bot/` 301 redirect, `/404.html`, all assets and Customer Hub links on the immutable preview URL.
 - [ ] Record the tested commit SHA and preview URL.
 
 Do not state `READY FOR GO LIVE` until every unchecked Phase 1 item above has been verified on the real staging deployment.

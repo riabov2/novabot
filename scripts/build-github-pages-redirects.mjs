@@ -9,7 +9,7 @@ const oldOrigin = 'https://riabov2.github.io/novabot';
 const routes = new Map([
   ['', 'https://novabotmu.com/'],
   ['index.html', 'https://novabotmu.com/'],
-  ['mu', 'https://novabotmu.com/mu-immortal-bot/'],
+  ['mu', 'https://novabotmu.com/'],
   ['about', 'https://novabotmu.com/#overview'],
   ['character-list', 'https://novabotmu.com/#overview'],
   ['activities-settings', 'https://novabotmu.com/#events'],

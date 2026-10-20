@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
 const checkOnly = process.argv.includes('--check');
-const publicEntries = ['index.html', '404.html', 'mu-immortal-bot', 'robots.txt', 'sitemap.xml', '_headers', '_redirects', 'assets'];
+const publicEntries = ['index.html', '404.html', 'robots.txt', 'sitemap.xml', '_headers', '_redirects', 'assets'];
 const requiredFiles = [...publicEntries, 'package.json'];
 
 const fail = message => {

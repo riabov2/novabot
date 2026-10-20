@@ -13,7 +13,7 @@ Because the old property still receives traffic, the redirect-only GitHub Pages 
 | Previous URL | New destination |
 | --- | --- |
 | `/novabot/` and `/novabot/index.html` | `https://novabotmu.com/` |
-| `/novabot/mu/` | `https://novabotmu.com/mu-immortal-bot/` |
+| `/novabot/mu/` | `https://novabotmu.com/` |
 | `/novabot/about/` | `https://novabotmu.com/#overview` |
 | `/novabot/character-list/` | `https://novabotmu.com/#overview` |
 | `/novabot/activities-settings/` | `https://novabotmu.com/#events` |
@@ -61,7 +61,7 @@ At launch, publish only the contents of `migration-dist/` to the branch selected
 3. Deploy and validate the new Cloudflare site before changing the old Pages content.
 4. Submit `https://novabotmu.com/sitemap.xml` in the new property.
 5. Publish the generated redirect-only artifact to GitHub Pages and submit `https://riabov2.github.io/novabot/sitemap.xml` in the old property for migration monitoring.
-6. Inspect the old root, old `/mu/`, new root and new `/mu-immortal-bot/` URLs.
+6. Inspect the old root, old `/mu/`, new root and the `/mu-immortal-bot/` redirect.
 7. Compare clicks, impressions, queries, indexing and crawl errors weekly for at least 12 weeks.
 8. Keep the redirects for at least one year and preferably indefinitely.
 

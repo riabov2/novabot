@@ -22,9 +22,9 @@ Because the old property still receives traffic, the redirect-only GitHub Pages 
 | `/novabot/get-coordinates/` | `https://novabotmu.com/#hunting` |
 | `/novabot/map/` | `https://novabotmu.com/#hunting` |
 | `/novabot/map-settings/` | `https://novabotmu.com/#hunting` |
-| `/novabot/grab-store/` | `https://novabotmu.com/#market` |
-| `/novabot/installation-download/` | `https://novabotmu.com/#connect` |
-| `/novabot/mu-bot-keys/` | `https://novabotmu.com/#connect` |
+| `/novabot/grab-store/` | `https://novabotmu.com/#inventory` |
+| `/novabot/installation-download/` | `https://novabotmu.com/#settings` |
+| `/novabot/mu-bot-keys/` | `https://novabotmu.com/#settings` |
 | `/novabot/others-settings/` | `https://novabotmu.com/#settings` |
 | `/novabot/pvp/` | `https://novabotmu.com/#pvp` |
 | `/novabot/contact-us/` | `https://novabotmu.com/#contact` |
